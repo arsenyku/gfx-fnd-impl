@@ -68,24 +68,26 @@ func writeOutput(outputFile:String?, data:GfxData)
 
 }
 
-let arguments = CommandLine.arguments
-
-guard arguments.count >= 2,
-      let factor = Int(arguments[1])
-else
+func main()
 {
-  Usage(execName: arguments[0])
-  exit(1)
+  let arguments = CommandLine.arguments
+  
+  guard arguments.count >= 2,
+    let factor = Int(arguments[1])
+    else
+  {
+    Usage(execName: arguments[0])
+    exit(1)
+  }
+  
+  print ("SCALE: \(factor) IN: \(arguments[safe:1] ?? "<<")  OUT:\(arguments[safe:2] ?? ">>")")
+  
+  let inputFile = arguments[safe:2]
+  let outputFile = arguments[safe: 3]
+  
+  let data = readInput(inputFile: inputFile)
+  writeOutput(outputFile: outputFile, data: data)
 }
 
-print ("SCALE: \(factor) IN: \(arguments[safe:1] ?? "<<")  OUT:\(arguments[safe:2] ?? ">>")")
-
-var inputLines:[String]
-var inputFile = arguments[safe:2]
-var outputFile = arguments[safe: 3]
-
-let data = readInput(inputFile: inputFile)
-writeOutput(outputFile: outputFile, data: data)
-
-
+main()
 
