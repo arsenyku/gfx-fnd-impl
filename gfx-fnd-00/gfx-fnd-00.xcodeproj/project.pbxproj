@@ -11,6 +11,7 @@
 		122311D01E260FF20072B04E /* gfx-fnd-00 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 122311C51E260F0F0072B04E /* gfx-fnd-00 */; };
 		122311D81E2614010072B04E /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122311D61E2614010072B04E /* Collection+SafeSubscript.swift */; };
 		122311D91E2614010072B04E /* String+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122311D71E2614010072B04E /* String+Subscripting.swift */; };
+		122311DB1E2617170072B04E /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122311DA1E2617170072B04E /* IO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		122311C81E260F0F0072B04E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		122311D61E2614010072B04E /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+SafeSubscript.swift"; path = "../../common/Extensions/Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
 		122311D71E2614010072B04E /* String+Subscripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Subscripting.swift"; path = "../../common/Extensions/String+Subscripting.swift"; sourceTree = "<group>"; };
+		122311DA1E2617170072B04E /* IO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../../common/IO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				122311D51E2613670072B04E /* Extensions */,
+				122311DA1E2617170072B04E /* IO.swift */,
 				122311C81E260F0F0072B04E /* main.swift */,
 			);
 			path = "gfx-fnd-00";
@@ -150,6 +153,7 @@
 				122311D91E2614010072B04E /* String+Subscripting.swift in Sources */,
 				122311D81E2614010072B04E /* Collection+SafeSubscript.swift in Sources */,
 				122311C91E260F0F0072B04E /* main.swift in Sources */,
+				122311DB1E2617170072B04E /* IO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
