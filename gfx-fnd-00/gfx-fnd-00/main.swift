@@ -8,12 +8,18 @@
 
 import Foundation
 
+enum PNMType:Int {
+  case BlackAndWhite = 1
+  case Grayscale
+  case RGB
+}
+
 func Usage(execName: String)
 {
   print ("\(execName) <scale> <input file> <ouput file>")
 }
 
-typealias GfxData = (pnmType:Int, xDimension:Int, yDimension:Int, pixels:[String])
+typealias GfxData = (pnmType:PNMType, xDimension:Int, yDimension:Int, pixels:[String])
 
 func readInput(inputFile:String?) -> GfxData
 {
@@ -31,7 +37,7 @@ func readInput(inputFile:String?) -> GfxData
   
   guard let line = inputLines[safe:0],
     line.length > 0,
-    let pnmType = Int(line[1..<line.length]!),
+    let pnmType = PNMType(rawValue: Int(line[1..<line.length]!)!),
     let dimensions = inputLines[safe: 1]?.components(separatedBy: .whitespaces),
     let xDimension = Int(dimensions[safe: 0] ?? "0"),
     let yDimension = Int(dimensions[safe: 1] ?? "0"),
@@ -55,17 +61,22 @@ func writeOutput(outputFile:String?, data:GfxData)
     }
     FileManager.default.createFile(atPath: outputFile, contents:Data(), attributes: nil)
     
-    ("P" + String(data.pnmType) + "\n").append(toFile: outputFile)
+    ("P" + String(data.pnmType.rawValue) + "\n").append(toFile: outputFile)
     "\(data.xDimension) \(data.yDimension) \n".append(toFile: outputFile)
     data.pixels.forEach({($0 + "\n").append(toFile: outputFile)})
   }
   else
   {
-    print ("P" + String(data.pnmType))
+    print ("P" + String(data.pnmType.rawValue))
     print ("\(data.xDimension) \(data.yDimension)")
     data.pixels.forEach({print($0)})
   }
 
+}
+
+func scale(pixels:[String], by factor:Int)
+{
+  
 }
 
 func main()
@@ -86,6 +97,7 @@ func main()
   let outputFile = arguments[safe: 3]
   
   let data = readInput(inputFile: inputFile)
+  let _ = scale(pixels: data.pixels, by:factor)
   writeOutput(outputFile: outputFile, data: data)
 }
 
