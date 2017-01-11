@@ -13,6 +13,61 @@ func Usage(execName: String)
   print ("\(execName) <scale> <input file> <ouput file>")
 }
 
+typealias GfxData = (pnmType:Int, xDimension:Int, yDimension:Int, pixels:[String])
+
+func readInput(inputFile:String?) -> GfxData
+{
+  var inputLines:[String]
+  
+  if let inputFile = inputFile
+  {
+    inputLines = readLines(pathAndFilename: inputFile)
+  }
+  else
+  {
+    inputLines = readLines()
+  }
+  inputLines = inputLines.filter({ !$0.hasPrefix("#") })
+  
+  guard let line = inputLines[safe:0],
+    line.length > 0,
+    let pnmType = Int(line[1..<line.length]!),
+    let dimensions = inputLines[safe: 1]?.components(separatedBy: .whitespaces),
+    let xDimension = Int(dimensions[safe: 0] ?? "0"),
+    let yDimension = Int(dimensions[safe: 1] ?? "0"),
+    inputLines.count > 2
+    else { exit(1) }
+  
+  print ("PNMTYPE: \(pnmType), xSize:\(xDimension) ySize:\(yDimension)")
+  
+  let pixels = Array(inputLines[2..<inputLines.count])
+
+  return (pnmType, xDimension, yDimension, pixels)
+}
+
+func writeOutput(outputFile:String?, data:GfxData)
+{
+  if let outputFile = outputFile
+  {
+    if (FileManager.default.fileExists(atPath: outputFile))
+    {
+      try? FileManager.default.removeItem(atPath: outputFile)
+    }
+    FileManager.default.createFile(atPath: outputFile, contents:Data(), attributes: nil)
+    
+    ("P" + String(data.pnmType) + "\n").append(toFile: outputFile)
+    "\(data.xDimension) \(data.yDimension) \n".append(toFile: outputFile)
+    data.pixels.forEach({($0 + "\n").append(toFile: outputFile)})
+  }
+  else
+  {
+    print ("P" + String(data.pnmType))
+    print ("\(data.xDimension) \(data.yDimension)")
+    data.pixels.forEach({print($0)})
+  }
+
+}
+
 let arguments = CommandLine.arguments
 
 guard arguments.count >= 2,
@@ -29,47 +84,8 @@ var inputLines:[String]
 var inputFile = arguments[safe:2]
 var outputFile = arguments[safe: 3]
 
-if let inputFile = inputFile
-{
-  inputLines = readLines(pathAndFilename: inputFile)
-}
-else
-{
-  inputLines = readLines()
-}
-inputLines = inputLines.filter({ !$0.hasPrefix("#") })
-
-var line = inputLines[safe: 0] ?? ""
-guard line.length > 0,
-      let pnmType = Int(line[1..<line.length]!),
-      let dimensions = inputLines[safe: 1]?.components(separatedBy: .whitespaces),
-      let xDimension = dimensions[safe: 0],
-      let yDimension = dimensions[safe: 1],
-      inputLines.count > 2
-  else { exit(1) }
-
-print ("PNMTYPE: \(pnmType), xSize:\(xDimension) ySize:\(yDimension)")
-
-let pixels = inputLines[2..<inputLines.count]
-
-if let outputFile = outputFile
-{
-  if (FileManager.default.fileExists(atPath: outputFile))
-  {
-    try? FileManager.default.removeItem(atPath: outputFile)
-  }
-  FileManager.default.createFile(atPath: outputFile, contents:Data(), attributes: nil)
-  
-  ("P" + String(pnmType) + "\n").append(toFile: outputFile)
-  "\(xDimension) \(yDimension) \n".append(toFile: outputFile)
-  pixels.forEach({($0 + "\n").append(toFile: outputFile)})
-}
-else
-{
-  print ("P" + String(pnmType))
-  print ("\(xDimension) \(yDimension)")
-  pixels.forEach({print($0)})
-}
+let data = readInput(inputFile: inputFile)
+writeOutput(outputFile: outputFile, data: data)
 
 
 
