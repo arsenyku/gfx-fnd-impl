@@ -74,9 +74,22 @@ func writeOutput(outputFile:String?, data:GfxData)
 
 }
 
-func scale(pixels:[String], by factor:Int)
+func scale(pixels:[String], by factor:Int) -> [String]
 {
+  var hScaled = [String]()
+  pixels.filter({ $0.trimmingCharacters(in: .whitespaces).length > 0 }).forEach({ line in
+    hScaled.append( line.characters.map({ pixel -> String in
+      let pixelAsString = String(pixel)
+      let repeated = pixelAsString == " " ? "" : pixelAsString + " "
+      let times = pixelAsString == " " ? 0 : factor
+      return String(repeatElement(repeated, count: times).joined())
+    }).joined() )
+  })
   
+  var scaled = [String]()
+  hScaled.forEach({ scaled.append(contentsOf: Array(repeatElement($0, count: factor)) ) })
+  
+  return scaled
 }
 
 func main()
@@ -97,8 +110,9 @@ func main()
   let outputFile = arguments[safe: 3]
   
   let data = readInput(inputFile: inputFile)
-  let _ = scale(pixels: data.pixels, by:factor)
-  writeOutput(outputFile: outputFile, data: data)
+  let scaled = scale(pixels: data.pixels, by:factor)
+//  print (scaled)
+  writeOutput(outputFile: outputFile, data: (data.pnmType, Int(scaled.first!.length/2), scaled.count, scaled))
 }
 
 main()
