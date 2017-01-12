@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum PNMType:Int {
-  case BlackAndWhite = 1
-  case Grayscale
-  case RGB
-}
-
 func Usage(execName: String)
 {
   print ("\(execName) <scale> <input file> <ouput file>")
