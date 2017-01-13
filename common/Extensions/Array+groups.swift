@@ -12,7 +12,7 @@ extension Array
 {
   subscript(safe range: Range<Index>) -> ArraySlice<Element>
   {
-    let from = index(startIndex, offsetBy: range.lowerBound, limitedBy: endIndex) ?? endIndex
+    let from = index(startIndex, offsetBy: range.lowerBound, limitedBy: endIndex) ?? startIndex
     let to = index(startIndex, offsetBy:  range.upperBound, limitedBy: endIndex) ?? endIndex
     return self[from ..< to]
   }
@@ -24,6 +24,5 @@ extension Array
     
   }
 }
-
 
 
