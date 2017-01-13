@@ -80,16 +80,35 @@ class PNMImage
   
   public func drawLine(start:(x:Int, y:Int), end:(x:Int, y:Int))
   {
-    let dx = end.x - start.x
-    let dy = end.y - start.y
+    let dx = Double(end.x - start.x)
+    let dy = Double(end.y - start.y)
+    let m = dy/dx
+    let b = Double(start.y) - m * Double(start.x)
     
-    let xRange = stride(from: start.x, through: end.x, by: (start.x <= end.x) ? 1 : -1)
+    let vertical = (start.x == end.x)
+    let horizontal = (start.y == end.y)
     
-    //print (Array(xRange))
+    let domain = stride(from: start.x, through: end.x, by: (start.x <= end.x) ? 1 : -1)
+    let range = stride(from: start.y, through: end.y, by: (start.y <= end.y) ? 1 : -1)
 
-    xRange.forEach({ x in
-      let y = Int(round(Double(start.y) + Double(dy * (x - start.x)) / Double(dx)))
-      pixels[y][x] = Pixel(on: true)
+    domain.forEach({ column in
+      
+      let x = Double(column)
+      let y = m*x + b
+      
+      let row = vertical ? start.y : Int(round(y))
+      
+      pixels[row][column] = Pixel(on: true)
+    })
+    
+    range.forEach({ row in
+      
+      let y = Double(row)
+      let x = (y - b) / m
+      
+      let column = horizontal ? start.x : Int(round(x))
+      
+      pixels[row][column] = Pixel(on: true)
     })
   }
   
