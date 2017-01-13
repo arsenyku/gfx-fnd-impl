@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		12DE6C0C1E289A2200FD08A5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C0B1E289A2200FD08A5 /* main.swift */; };
+		12DE6C151E289B0E00FD08A5 /* PNMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C121E289B0E00FD08A5 /* PNMImage.swift */; };
+		12DE6C161E289B0E00FD08A5 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C131E289B0E00FD08A5 /* Pixel.swift */; };
+		12DE6C171E289B0E00FD08A5 /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C141E289B0E00FD08A5 /* IO.swift */; };
+		12DE6C1C1E289B8300FD08A5 /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C191E289B8300FD08A5 /* Array+groups.swift */; };
+		12DE6C1D1E289B8300FD08A5 /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C1A1E289B8300FD08A5 /* Collection+SafeSubscript.swift */; };
+		12DE6C1E1E289B8300FD08A5 /* String+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C1B1E289B8300FD08A5 /* String+Subscripting.swift */; };
+		12DE6C201E289BB100FD08A5 /* gfx-fnd-01 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 12DE6C081E289A2200FD08A5 /* gfx-fnd-01 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,11 +27,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		12DE6C1F1E289BA900FD08A5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Users/asu/dev/training/gfx/gfx-fnd-impl/bin";
+			dstSubfolderSpec = 0;
+			files = (
+				12DE6C201E289BB100FD08A5 /* gfx-fnd-01 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		12DE6C081E289A2200FD08A5 /* gfx-fnd-01 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-01"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DE6C0B1E289A2200FD08A5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		12DE6C121E289B0E00FD08A5 /* PNMImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNMImage.swift; path = ../../common/PNMImage.swift; sourceTree = "<group>"; };
+		12DE6C131E289B0E00FD08A5 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pixel.swift; path = ../../common/Pixel.swift; sourceTree = "<group>"; };
+		12DE6C141E289B0E00FD08A5 /* IO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../../common/IO.swift; sourceTree = "<group>"; };
+		12DE6C191E289B8300FD08A5 /* Array+groups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+groups.swift"; path = "../../common/Extensions/Array+groups.swift"; sourceTree = "<group>"; };
+		12DE6C1A1E289B8300FD08A5 /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+SafeSubscript.swift"; path = "../../common/Extensions/Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
+		12DE6C1B1E289B8300FD08A5 /* String+Subscripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Subscripting.swift"; path = "../../common/Extensions/String+Subscripting.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +80,23 @@
 		12DE6C0A1E289A2200FD08A5 /* gfx-fnd-01 */ = {
 			isa = PBXGroup;
 			children = (
+				12DE6C181E289B1D00FD08A5 /* Extensions */,
+				12DE6C141E289B0E00FD08A5 /* IO.swift */,
+				12DE6C131E289B0E00FD08A5 /* Pixel.swift */,
+				12DE6C121E289B0E00FD08A5 /* PNMImage.swift */,
 				12DE6C0B1E289A2200FD08A5 /* main.swift */,
 			);
 			path = "gfx-fnd-01";
+			sourceTree = "<group>";
+		};
+		12DE6C181E289B1D00FD08A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				12DE6C191E289B8300FD08A5 /* Array+groups.swift */,
+				12DE6C1A1E289B8300FD08A5 /* Collection+SafeSubscript.swift */,
+				12DE6C1B1E289B8300FD08A5 /* String+Subscripting.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,6 +109,7 @@
 				12DE6C041E289A2200FD08A5 /* Sources */,
 				12DE6C051E289A2200FD08A5 /* Frameworks */,
 				12DE6C061E289A2200FD08A5 /* CopyFiles */,
+				12DE6C1F1E289BA900FD08A5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -122,6 +160,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				12DE6C0C1E289A2200FD08A5 /* main.swift in Sources */,
+				12DE6C1E1E289B8300FD08A5 /* String+Subscripting.swift in Sources */,
+				12DE6C161E289B0E00FD08A5 /* Pixel.swift in Sources */,
+				12DE6C1C1E289B8300FD08A5 /* Array+groups.swift in Sources */,
+				12DE6C151E289B0E00FD08A5 /* PNMImage.swift in Sources */,
+				12DE6C1D1E289B8300FD08A5 /* Collection+SafeSubscript.swift in Sources */,
+				12DE6C171E289B0E00FD08A5 /* IO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +297,7 @@
 				12DE6C111E289A2200FD08A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -78,6 +78,11 @@ class PNMImage
     return PNMImage(type:type, width:width*factor, height:height*factor, maxGrayscale:maxGrayscale, pixels:scaled)
   }
   
+  public func drawLine(start:(Int, Int), end:(Int, Int))
+  {
+    
+  }
+  
   public func write(toFile outputFile:String?)
   {
     var output =
