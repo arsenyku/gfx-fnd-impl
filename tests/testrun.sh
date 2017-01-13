@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $HOME/dev/training/gfx/gfx-fnd-impl/tests
+
 if [ "$1" = "00" ]; then
 
 ../bin/gfx-fnd-00 4 3x3.bw.pnm ~/Desktop/out.3x3.bw.pnm
@@ -13,13 +15,17 @@ if [ "$1" = "01" ]; then
 
 ../bin/gfx-fnd-01
 ../bin/gfx-fnd-01 8x7 1,2 3,4
+../bin/gfx-fnd-01 10x20 0,0 9,19
 
 exit
 fi
 
 
 cd ../../gfx-fnd-tests
-./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
+#./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
+#./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
+./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01 00
+./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
 
 exit 
 
