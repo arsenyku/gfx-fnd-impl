@@ -21,7 +21,7 @@ enum PNMType:Int {
 
 class PNMImage
 {
-  let pixels:[[Pixel]]
+  var pixels:[[Pixel]]
   let width:Int
   let height:Int
   let type:PNMType
@@ -78,9 +78,19 @@ class PNMImage
     return PNMImage(type:type, width:width*factor, height:height*factor, maxGrayscale:maxGrayscale, pixels:scaled)
   }
   
-  public func drawLine(start:(Int, Int), end:(Int, Int))
+  public func drawLine(start:(x:Int, y:Int), end:(x:Int, y:Int))
   {
+    let dx = end.x - start.x
+    let dy = end.y - start.y
     
+    let xRange = stride(from: start.x, through: end.x, by: (start.x <= end.x) ? 1 : -1)
+    
+    //print (Array(xRange))
+
+    xRange.forEach({ x in
+      let y = Int(round(Double(start.y) + Double(dy * (x - start.x)) / Double(dx)))
+      pixels[y][x] = Pixel(on: true)
+    })
   }
   
   public func write(toFile outputFile:String?)
