@@ -10,6 +10,8 @@ import Foundation
 
 class Pixel:CustomStringConvertible
 {
+  static let DEFAULT_MAX_GRAYSCALE = 255
+
   let red:Int
   let green:Int
   let blue:Int

@@ -14,7 +14,7 @@
 		122311DB1E2617170072B04E /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122311DA1E2617170072B04E /* IO.swift */; };
 		12DE6BF81E271A6700FD08A5 /* PNMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6BF71E271A6700FD08A5 /* PNMImage.swift */; };
 		12DE6BFA1E273E9000FD08A5 /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6BF91E273E9000FD08A5 /* Array+groups.swift */; };
-		12DE6BFC1E275ED400FD08A5 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6BFB1E275ED400FD08A5 /* Pixel.swift */; };
+		12DE6BFE1E28990600FD08A5 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6BFD1E28990600FD08A5 /* Pixel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +47,7 @@
 		122311DA1E2617170072B04E /* IO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../../common/IO.swift; sourceTree = "<group>"; };
 		12DE6BF71E271A6700FD08A5 /* PNMImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNMImage.swift; path = ../../common/PNMImage.swift; sourceTree = "<group>"; };
 		12DE6BF91E273E9000FD08A5 /* Array+groups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+groups.swift"; path = "../../common/Extensions/Array+groups.swift"; sourceTree = "<group>"; };
-		12DE6BFB1E275ED400FD08A5 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		12DE6BFD1E28990600FD08A5 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pixel.swift; path = ../../common/Pixel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 			children = (
 				122311D51E2613670072B04E /* Extensions */,
 				122311DA1E2617170072B04E /* IO.swift */,
-				12DE6BFB1E275ED400FD08A5 /* Pixel.swift */,
+				12DE6BFD1E28990600FD08A5 /* Pixel.swift */,
 				12DE6BF71E271A6700FD08A5 /* PNMImage.swift */,
 				122311C81E260F0F0072B04E /* main.swift */,
 			);
@@ -159,7 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12DE6BFC1E275ED400FD08A5 /* Pixel.swift in Sources */,
+				12DE6BFE1E28990600FD08A5 /* Pixel.swift in Sources */,
 				12DE6BF81E271A6700FD08A5 /* PNMImage.swift in Sources */,
 				122311D91E2614010072B04E /* String+Subscripting.swift in Sources */,
 				122311D81E2614010072B04E /* Collection+SafeSubscript.swift in Sources */,
