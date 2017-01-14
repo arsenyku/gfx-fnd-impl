@@ -19,6 +19,13 @@ enum PNMType:Int {
 //  case AnyType
 }
 
+public struct CGPixel {
+  var a:UInt8 = 255
+  var r:UInt8
+  var g:UInt8
+  var b:UInt8
+}
+
 class PNMImage
 {
   var pixels:[[Pixel]]
@@ -141,6 +148,25 @@ class PNMImage
     }
   }
 
+  public func toCGImage() -> CGImage?
+  {
+    let bitsPerComponent:Int = 8
+    let bitsPerPixel:Int = 32
+    let cgPixelSize = MemoryLayout<CGPixel>.size
+    
+//    assert(pixels.count == Int(width * height))
+    
+    var data = pixels.flatMap({$0}).map({CGPixel(a:UInt8(maxGrayscale), r:UInt8($0.red) , g:UInt8($0.green), b:UInt8($0.blue))}) // Copy to mutable []
+    let providerRef = CGDataProvider(
+      data: NSData(bytes: &data, length: data.count * cgPixelSize)
+    )
+    
+    let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+    let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
+
+    return CGImage(width: width, height: height, bitsPerComponent: bitsPerComponent, bitsPerPixel: bitsPerPixel, bytesPerRow: width * cgPixelSize, space: rgbColorSpace, bitmapInfo: bitmapInfo, provider: providerRef!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+  }
+  
   class func pixelTable(from pixelArray:[String], ofType pnmType:PNMType) -> [[Pixel]]
   {
     var result = [[Pixel]]()
