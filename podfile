@@ -1,0 +1,10 @@
+platform :ios, '8.0'
+
+use_frameworks!
+
+workspace 'gfx-fnd'
+
+target 'gfx-fnd-02' do
+    pod 'SwiftyJSON'
+    project 'gfx-fnd-02/gfx-fnd-02.xcodeproj'
+end

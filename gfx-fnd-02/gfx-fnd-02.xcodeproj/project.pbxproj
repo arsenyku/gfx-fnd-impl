@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12D652361E29F2E1000F7663 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D652351E29F2E1000F7663 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		12D652381E29F345000F7663 /* Pods_gfx_fnd_02.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D652371E29F345000F7663 /* Pods_gfx_fnd_02.framework */; };
+		12D652391E29F353000F7663 /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 12D652351E29F2E1000F7663 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		12DE6C2E1E29D06800FD08A5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C2D1E29D06800FD08A5 /* main.swift */; };
 		12DE6C391E29D0EA00FD08A5 /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C351E29D0EA00FD08A5 /* Array+groups.swift */; };
 		12DE6C3A1E29D0EA00FD08A5 /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C361E29D0EA00FD08A5 /* Collection+SafeSubscript.swift */; };
@@ -16,6 +19,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		12D652311E29F1D4000F7663 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Library/Frameworks;
+			dstSubfolderSpec = 0;
+			files = (
+				12D652391E29F353000F7663 /* SwiftyJSON.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12DE6C281E29D06800FD08A5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,12 +51,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		12D652351E29F2E1000F7663 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/gfx-fnd-dvoyiorvrwaffmdqivhosrmipbds/Build/Products/Debug/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		12D652371E29F345000F7663 /* Pods_gfx_fnd_02.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_gfx_fnd_02.framework; path = "/Users/asu/dev/training/gfx/gfx-fnd-impl/Pods/../build/Debug-iphoneos/Pods_gfx_fnd_02.framework"; sourceTree = "<absolute>"; };
 		12DE6C2A1E29D06800FD08A5 /* gfx-fnd-02 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-02"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DE6C2D1E29D06800FD08A5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		12DE6C351E29D0EA00FD08A5 /* Array+groups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+groups.swift"; path = "../../common/Extensions/Array+groups.swift"; sourceTree = "<group>"; };
 		12DE6C361E29D0EA00FD08A5 /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+SafeSubscript.swift"; path = "../../common/Extensions/Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
 		12DE6C371E29D0EA00FD08A5 /* String+Subscripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Subscripting.swift"; path = "../../common/Extensions/String+Subscripting.swift"; sourceTree = "<group>"; };
 		12DE6C381E29D0EA00FD08A5 /* IO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../../common/IO.swift; sourceTree = "<group>"; };
+		E2B50CEDDE26E7F73FA0BE47 /* Pods-gfx-fnd-02.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gfx-fnd-02.release.xcconfig"; path = "../Pods/Target Support Files/Pods-gfx-fnd-02/Pods-gfx-fnd-02.release.xcconfig"; sourceTree = "<group>"; };
+		E4C43571F20FAADF5E3499FF /* Pods-gfx-fnd-02.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gfx-fnd-02.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-gfx-fnd-02/Pods-gfx-fnd-02.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D652381E29F345000F7663 /* Pods_gfx_fnd_02.framework in Frameworks */,
+				12D652361E29F2E1000F7663 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +81,8 @@
 			children = (
 				12DE6C2C1E29D06800FD08A5 /* gfx-fnd-02 */,
 				12DE6C2B1E29D06800FD08A5 /* Products */,
+				8FB20E467883984F42D5685B /* Pods */,
+				F2B78697DFC01A15B6FFDC62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +114,24 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		8FB20E467883984F42D5685B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E4C43571F20FAADF5E3499FF /* Pods-gfx-fnd-02.debug.xcconfig */,
+				E2B50CEDDE26E7F73FA0BE47 /* Pods-gfx-fnd-02.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F2B78697DFC01A15B6FFDC62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12D652371E29F345000F7663 /* Pods_gfx_fnd_02.framework */,
+				12D652351E29F2E1000F7663 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -100,10 +139,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12DE6C311E29D06800FD08A5 /* Build configuration list for PBXNativeTarget "gfx-fnd-02" */;
 			buildPhases = (
+				E48091EEBEFF56DF6D4AABA8 /* [CP] Check Pods Manifest.lock */,
 				12DE6C261E29D06800FD08A5 /* Sources */,
 				12DE6C271E29D06800FD08A5 /* Frameworks */,
 				12DE6C281E29D06800FD08A5 /* CopyFiles */,
+				BDC1E2012097462B167657C8 /* [CP] Copy Pods Resources */,
 				12DE6C3D1E29D27100FD08A5 /* CopyFiles */,
+				12D652311E29F1D4000F7663 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -147,6 +189,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BDC1E2012097462B167657C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-gfx-fnd-02/Pods-gfx-fnd-02-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E48091EEBEFF56DF6D4AABA8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		12DE6C261E29D06800FD08A5 /* Sources */ = {
@@ -254,8 +329,14 @@
 		};
 		12DE6C321E29D06800FD08A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4C43571F20FAADF5E3499FF /* Pods-gfx-fnd-02.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 65JJ25F4V6;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$(SRCROOT)/../bin\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -263,6 +344,7 @@
 		};
 		12DE6C331E29D06800FD08A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2B50CEDDE26E7F73FA0BE47 /* Pods-gfx-fnd-02.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 65JJ25F4V6;
 				PRODUCT_NAME = "$(TARGET_NAME)";

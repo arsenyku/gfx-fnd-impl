@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 // PROGNAME 8x7 1,2 3,4 OUTFILENAME
 func Usage()
@@ -26,8 +27,10 @@ func main()
   
   let outputFile = CommandLine.arguments[safe:2]
   
-
+  let json = JSON(data: inputFile.data(using: .ascii)!)
+  
   print ("\(inputFile) \(outputFile ?? "")")
+  print (json)
 }
 
 

@@ -10,4 +10,7 @@
    <FileRef
       location = "group:gfx-fnd-02/gfx-fnd-02.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>
