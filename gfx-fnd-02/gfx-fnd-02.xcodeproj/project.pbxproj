@@ -22,7 +22,7 @@
 		12D652311E29F1D4000F7663 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /Library/Frameworks;
+			dstPath = "/Users/asu/dev/training/gfx/gfx-fnd-impl/bin";
 			dstSubfolderSpec = 0;
 			files = (
 				12D652391E29F353000F7663 /* SwiftyJSON.framework in CopyFiles */,
@@ -337,6 +337,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
 					"\"$(SRCROOT)/../bin\"",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks' $(SRCROOT)/../bin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -347,6 +348,7 @@
 			baseConfigurationReference = E2B50CEDDE26E7F73FA0BE47 /* Pods-gfx-fnd-02.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 65JJ25F4V6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks' $(SRCROOT)/../bin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
