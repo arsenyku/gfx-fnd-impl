@@ -20,6 +20,13 @@ if [ "$1" = "01" ]; then
 exit
 fi
 
+if [ "$1" = "02" ]; then
+
+../bin/gfx-fnd-02
+../bin/gfx-fnd-02 testwalls.json
+
+exit
+fi
 
 cd ../../gfx-fnd-tests
 #./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
