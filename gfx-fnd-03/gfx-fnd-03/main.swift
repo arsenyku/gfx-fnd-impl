@@ -25,20 +25,26 @@ func main()
   
   let outputFile = CommandLine.arguments[safe:2]
 
+  let maxColour = 255
+  
   let json = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
 
   let cameraJson = json["camera"]
   let wallsJson = json["walls"]
-  let groundColour = json["ground_color"]
-  let skyColour = json["sky_color"]
+  let groundColourJson = json["ground_color"]
+  let skyColourJson = json["sky_color"]
   
-  String(describing:cameraJson).write(toFile: outputFile)
-  String(describing:wallsJson).write(toFile: outputFile)
+  let camera = Camera(fromJSON:cameraJson)
+  let walls = wallsJson.map ({ Wall(fromJSON:$0.1, maxColour:maxColour) })
+  let groundColour:Colour = (groundColourJson[0].intValue, groundColourJson[1].intValue, groundColourJson[2].intValue, maxColour)
+  let skyColour:Colour = (skyColourJson[0].intValue, skyColourJson[1].intValue, skyColourJson[2].intValue, maxColour)
+  
+  String(describing:camera).write(toFile: outputFile)
+  String(describing:walls).write(toFile: outputFile)
   String(describing:groundColour).write(toFile: outputFile)
   String(describing:skyColour).write(toFile: outputFile)
-  
-  
-  
+ 
+
   
 }
 

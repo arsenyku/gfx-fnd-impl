@@ -19,6 +19,9 @@ enum PNMType:Int {
 //  case AnyType
 }
 
+typealias Colour = (r:Int, g:Int, b:Int, max:Int)
+typealias Point = (x:Int, y:Int)
+
 class PNMImage
 {
   var pixels:[[Pixel]]
