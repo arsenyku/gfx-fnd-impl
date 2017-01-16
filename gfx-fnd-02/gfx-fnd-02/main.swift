@@ -95,39 +95,41 @@ func main()
     return (Int(wallId)!, wallStart, wallEnd)
   })
   
-  let jsonAngles = json["angles"].arrayValue
-  let angles = jsonAngles.map({ $0.floatValue })
-
   let largeR:Float = 10000
+
+  let jsonAngles = json["angles"].arrayValue
   
-  let cameraRays = angles.map({ radianAngle -> Line in
-    let rayStart:Point = ( cameraPoint.x, cameraPoint.y )
-    let rayEnd:Point = ( cameraPoint.x + largeR * cos(radianAngle), cameraPoint.y + largeR * sin(radianAngle) )
-    let cameraRay:Line = (rayStart, rayEnd)
-    return cameraRay
-  })
-  
-  let collisions = cameraRays.map({ cameraRay -> [String:Any?] in
+  let collisions = jsonAngles.map({ $0.floatValue })
+    .map({ radianAngle -> Line in
+      
+      let rayStart:Point = ( cameraPoint.x, cameraPoint.y )
+      let rayEnd:Point = ( cameraPoint.x + largeR * cos(radianAngle), cameraPoint.y + largeR * sin(radianAngle) )
+      let cameraRay:Line = (rayStart, rayEnd)
+      
+      return cameraRay
     
-    var collision:[String : Any?] = ["wall":nil, "distance":nil]
+    }).map({ cameraRay -> [String:Any?] in
     
-    for wall in walls
-    {
-      let wallLine = (wall.start, wall.end)
-      if let intersect = findIntersect(lineAB: wallLine, lineCD: cameraRay)
+      var collision:[String : Any?] = ["wall":nil, "distance":nil]
+      
+      for wall in walls
       {
-        let dx = intersect.x - cameraPoint.x
-        let dy = intersect.y - cameraPoint.y
-        let distance = sqrt(dx*dx + dy*dy)
-        
-        collision = ["wall":wall.id, "distance":distance]
-        
-        break
+        let wallLine = (wall.start, wall.end)
+        if let intersect = findIntersect(lineAB: wallLine, lineCD: cameraRay)
+        {
+          let dx = intersect.x - cameraPoint.x
+          let dy = intersect.y - cameraPoint.y
+          let distance = sqrt(dx*dx + dy*dy)
+          
+          collision = ["wall":wall.id, "distance":distance]
+          
+          break
+        }
       }
-    }
-    
-    return collision
-  })
+      
+      return collision
+      
+    })
   
   let output:String = String(describing:JSON(["collisions":collisions]))
   
