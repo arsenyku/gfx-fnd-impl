@@ -28,6 +28,13 @@ if [ "$1" = "02" ]; then
 exit
 fi
 
+if [ "$1" = "03" ]; then
+
+../bin/gfx-fnd-03
+
+exit
+fi
+
 cd ../../gfx-fnd-tests
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
