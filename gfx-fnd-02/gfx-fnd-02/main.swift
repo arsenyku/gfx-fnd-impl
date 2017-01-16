@@ -108,8 +108,9 @@ func main()
       
       return cameraRay
     
-    }).map({ cameraRay -> [String:Any?] in
-    
+    })
+    .map({ cameraRay -> [String:Any?] in
+      
       var collision:[String : Any?] = ["wall":nil, "distance":nil]
       
       for wall in walls
