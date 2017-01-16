@@ -29,9 +29,7 @@ exit
 fi
 
 cd ../../gfx-fnd-tests
-#./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
-#./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
-./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01 00
+./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-02 02
 
