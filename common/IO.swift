@@ -32,10 +32,49 @@ func readLines() -> [String]
   return inputLines
 }
 
+extension FileManager
+{
+  func emptyFile(atPath filePathAndFilename:String)
+  {
+    if (FileManager.default.fileExists(atPath: filePathAndFilename))
+    {
+      try? FileManager.default.removeItem(atPath: filePathAndFilename)
+    }
+    FileManager.default.createFile(atPath: filePathAndFilename, contents:Data(), attributes: nil)
+
+  }
+}
+
 extension String
 {
-  func append(toFile filePathAndFilename:String)
+  func write(toFile filePathAndFilename:String?)
   {
+    guard let filePathAndFilename = filePathAndFilename
+      else
+    {
+      print (self)
+      return
+    }
+
+    FileManager.default.emptyFile(atPath: filePathAndFilename)
+
+    self.append(toFile: filePathAndFilename)
+  }
+  
+  func append(toFile filePathAndFilename:String?)
+  {
+    guard let filePathAndFilename = filePathAndFilename
+    else
+    {
+      print (self)
+      return
+    }
+    
+    if (!FileManager.default.fileExists(atPath: filePathAndFilename))
+    {
+      FileManager.default.emptyFile(atPath: filePathAndFilename)
+    }
+    
     if let fileHandle = FileHandle(forWritingAtPath: filePathAndFilename) {
       defer {
         fileHandle.closeFile()

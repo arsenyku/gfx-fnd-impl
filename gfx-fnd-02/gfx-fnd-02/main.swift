@@ -34,7 +34,6 @@ func findIntersect(lineAB:Line, lineCD:Line) -> Point?
   
   if denominator == 0
   {
-//    print ("Collinear - no intersect")
     return nil
   }
   
@@ -47,7 +46,6 @@ func findIntersect(lineAB:Line, lineCD:Line) -> Point?
   
   if (numeratorAB < 0) == positiveDenominator
   {
-//    print ("No Collision")
     return nil
   }
   
@@ -55,20 +53,17 @@ func findIntersect(lineAB:Line, lineCD:Line) -> Point?
   let numeratorCD = (dxCD * dyCA) - (dyCD * dxCA)
   if (numeratorCD < 0) == positiveDenominator
   {
-//    print("No Collision")
     return nil
   }
   
   if ((numeratorAB > denominator) == positiveDenominator) ||
     ((numeratorCD > denominator) == positiveDenominator)
   {
-//    print ("No Collision")
     return nil
   }
   
   // Collision detected
   
-  //t = t_numer / denom
   let t = numeratorCD / denominator
   
   let intersectionX = pointA.x + (t * dxAB)
@@ -90,9 +85,6 @@ func main()
   
   let outputFile = CommandLine.arguments[safe:2]
   
-
-//  print ("\(inputFile) \(outputFile ?? "")")
-  
   let json = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
 
   let jsonWalls = Array(json["walls"])
@@ -101,28 +93,24 @@ func main()
   let jsonAngles = json["angles"].arrayValue
   let largeR:Float = 10000
   
-//  print (camX, camY)
-//  print (jsonAngles)
-  
   let walls = jsonWalls.map({ (wallId, wallPoints) -> Wall in
     let wallStart = (wallPoints["x0"].floatValue, wallPoints["y0"].floatValue) as Point
     let wallEnd = (wallPoints["x1"].floatValue, wallPoints["y1"].floatValue) as Point
     return (Int(wallId)!, wallStart, wallEnd)
-  }) //.toDictionary(byTransforming: { ($0.name, $0)})
-
-//  print (walls)
+  })
   
-  var collisions = [[String:Any?]]()
+  let angles = jsonAngles.map({ $0.floatValue })
   
-  for jsonAngle in jsonAngles
-  {
-    let radianAngle = jsonAngle.floatValue
+  let cameraRays = angles.map({ radianAngle -> Line in
     let rayStart:Point = ( camX, camY )
     let rayEnd:Point = ( camX + largeR * cos(radianAngle), camY + largeR * sin(radianAngle) )
     let cameraRay:Line = (rayStart, rayEnd)
-//    print(cameraRay)
-   
-    var collision:[String : Any]? = nil
+    return cameraRay
+  })
+  
+  let collisions = cameraRays.map({ cameraRay -> [String:Any?] in
+    
+    var collision:[String : Any?] = ["wall":nil, "distance":nil]
     
     for wall in walls
     {
@@ -133,38 +121,18 @@ func main()
         let dy = intersect.y - camY
         let distance = sqrt(dx*dx + dy*dy)
         
-//      print (intersect ?? "No Intersect")
-//        intersections.append((wall.id, distance))
         collision = ["wall":wall.id, "distance":distance]
+        
         break
       }
     }
-
-    if let collision = collision
-    {
-      collisions.append(collision)
-    }
-    else
-    {
-      collisions.append(["wall":nil, "distance":nil])
-    }
-  }
-
-  var result = [String:Array<Any>]()
-
-  result["collisions"] = collisions
-  let jsonResult = JSON(result)
-
-  let output:String = jsonResult.rawString([.castNilToNSNull: true])!
+    
+    return collision
+  })
   
-  if let outputFile = outputFile
-  {
-    output.append(toFile: outputFile)
-  }
-  else
-  {
-    print (output)
-  }
+  let output:String = String(describing:JSON(["collisions":collisions]))
+  
+  output.write(toFile: outputFile)
 
 }
 

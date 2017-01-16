@@ -125,20 +125,8 @@ class PNMImage
     
     output += pixels.reduce("", { partial, row in partial + row.map({ $0.output }).joined(separator: " ") + "\n" })
     
-    if let outputFile = outputFile
-    {
-      if (FileManager.default.fileExists(atPath: outputFile))
-      {
-        try? FileManager.default.removeItem(atPath: outputFile)
-      }
-      FileManager.default.createFile(atPath: outputFile, contents:Data(), attributes: nil)
+    output.write(toFile: outputFile)
     
-      output.append(toFile: outputFile)
-    }
-    else
-    {
-      print (output)
-    }
   }
 
   class func pixelTable(from pixelArray:[String], ofType pnmType:PNMType) -> [[Pixel]]
