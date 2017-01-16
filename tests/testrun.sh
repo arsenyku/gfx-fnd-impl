@@ -31,6 +31,7 @@ fi
 if [ "$1" = "03" ]; then
 
 ../bin/gfx-fnd-03
+../bin/gfx-fnd-03 startImage.json
 
 exit
 fi

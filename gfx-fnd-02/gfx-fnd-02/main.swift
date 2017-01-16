@@ -8,7 +8,6 @@
 
 import Foundation
 
-// PROGNAME 8x7 1,2 3,4 OUTFILENAME
 func Usage()
 {
   let exec = CommandLine.arguments[0]
