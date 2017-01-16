@@ -49,7 +49,6 @@ func findIntersect(lineAB:Line, lineCD:Line) -> Point?
     return nil
   }
   
-  // s32_x * s02_y - s32_y * s02_x
   let numeratorCD = (dxCD * dyCA) - (dyCD * dxCA)
   if (numeratorCD < 0) == positiveDenominator
   {
@@ -87,23 +86,23 @@ func main()
   
   let json = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
 
-  let jsonWalls = Array(json["walls"])
-  let camX = json["camera_x"].floatValue
-  let camY = json["camera_y"].floatValue
-  let jsonAngles = json["angles"].arrayValue
-  let largeR:Float = 10000
+  let cameraPoint:Point = (json["camera_x"].floatValue, json["camera_y"].floatValue)
   
+  let jsonWalls = Array(json["walls"])
   let walls = jsonWalls.map({ (wallId, wallPoints) -> Wall in
     let wallStart = (wallPoints["x0"].floatValue, wallPoints["y0"].floatValue) as Point
     let wallEnd = (wallPoints["x1"].floatValue, wallPoints["y1"].floatValue) as Point
     return (Int(wallId)!, wallStart, wallEnd)
   })
   
+  let jsonAngles = json["angles"].arrayValue
   let angles = jsonAngles.map({ $0.floatValue })
+
+  let largeR:Float = 10000
   
   let cameraRays = angles.map({ radianAngle -> Line in
-    let rayStart:Point = ( camX, camY )
-    let rayEnd:Point = ( camX + largeR * cos(radianAngle), camY + largeR * sin(radianAngle) )
+    let rayStart:Point = ( cameraPoint.x, cameraPoint.y )
+    let rayEnd:Point = ( cameraPoint.x + largeR * cos(radianAngle), cameraPoint.y + largeR * sin(radianAngle) )
     let cameraRay:Line = (rayStart, rayEnd)
     return cameraRay
   })
@@ -117,8 +116,8 @@ func main()
       let wallLine = (wall.start, wall.end)
       if let intersect = findIntersect(lineAB: wallLine, lineCD: cameraRay)
       {
-        let dx = intersect.x - camX
-        let dy = intersect.y - camY
+        let dx = intersect.x - cameraPoint.x
+        let dy = intersect.y - cameraPoint.y
         let distance = sqrt(dx*dx + dy*dy)
         
         collision = ["wall":wall.id, "distance":distance]
