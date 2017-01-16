@@ -24,6 +24,7 @@ if [ "$1" = "02" ]; then
 
 ../bin/gfx-fnd-02
 ../bin/gfx-fnd-02 testwalls.json
+../bin/gfx-fnd-02 ../../gfx-fnd-tests/02/02_origin_simple_walls/in.json
 
 exit
 fi
@@ -33,6 +34,7 @@ cd ../../gfx-fnd-tests
 #./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01 00
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
+./run_tests ../gfx-fnd-impl/bin/gfx-fnd-02 02
 
 exit 
 

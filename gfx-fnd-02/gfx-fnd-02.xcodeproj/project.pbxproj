@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1216EE9A1E2C4FEB00698057 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */; };
-		1260AB121E2C721100FC553C /* JSON+cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB111E2C721100FC553C /* JSON+cast.swift */; };
 		1260AB141E2C773F00FC553C /* Dictionary+Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB131E2C773F00FC553C /* Dictionary+Filter.swift */; };
 		12DE6C2E1E29D06800FD08A5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C2D1E29D06800FD08A5 /* main.swift */; };
 		12DE6C391E29D0EA00FD08A5 /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C351E29D0EA00FD08A5 /* Array+groups.swift */; };
@@ -42,7 +41,6 @@
 
 /* Begin PBXFileReference section */
 		1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
-		1260AB111E2C721100FC553C /* JSON+cast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "JSON+cast.swift"; path = "../../common/Extensions/JSON+cast.swift"; sourceTree = "<group>"; };
 		1260AB131E2C773F00FC553C /* Dictionary+Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Filter.swift"; path = "../../common/Extensions/Dictionary+Filter.swift"; sourceTree = "<group>"; };
 		12DE6C2A1E29D06800FD08A5 /* gfx-fnd-02 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-02"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DE6C2D1E29D06800FD08A5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 				12DE6C351E29D0EA00FD08A5 /* Array+groups.swift */,
 				12DE6C361E29D0EA00FD08A5 /* Collection+SafeSubscript.swift */,
 				12DE6C371E29D0EA00FD08A5 /* String+Subscripting.swift */,
-				1260AB111E2C721100FC553C /* JSON+cast.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -174,7 +171,6 @@
 				1260AB141E2C773F00FC553C /* Dictionary+Filter.swift in Sources */,
 				12DE6C3A1E29D0EA00FD08A5 /* Collection+SafeSubscript.swift in Sources */,
 				12DE6C391E29D0EA00FD08A5 /* Array+groups.swift in Sources */,
-				1260AB121E2C721100FC553C /* JSON+cast.swift in Sources */,
 				1216EE9A1E2C4FEB00698057 /* SwiftyJSON.swift in Sources */,
 				12DE6C3C1E29D0EA00FD08A5 /* IO.swift in Sources */,
 				12DE6C3B1E29D0EA00FD08A5 /* String+Subscripting.swift in Sources */,
