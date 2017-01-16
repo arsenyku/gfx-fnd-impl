@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1216EE9A1E2C4FEB00698057 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */; };
 		12DE6C2E1E29D06800FD08A5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C2D1E29D06800FD08A5 /* main.swift */; };
 		12DE6C391E29D0EA00FD08A5 /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C351E29D0EA00FD08A5 /* Array+groups.swift */; };
 		12DE6C3A1E29D0EA00FD08A5 /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE6C361E29D0EA00FD08A5 /* Collection+SafeSubscript.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		12DE6C2A1E29D06800FD08A5 /* gfx-fnd-02 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-02"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DE6C2D1E29D06800FD08A5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		12DE6C351E29D0EA00FD08A5 /* Array+groups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+groups.swift"; path = "../../common/Extensions/Array+groups.swift"; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1216EE981E2C4FD700698057 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 		12DE6C211E29D06800FD08A5 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 		12DE6C2C1E29D06800FD08A5 /* gfx-fnd-02 */ = {
 			isa = PBXGroup;
 			children = (
+				1216EE981E2C4FD700698057 /* External */,
 				12DE6C341E29D0B900FD08A5 /* Extensions */,
 				12DE6C381E29D0EA00FD08A5 /* IO.swift */,
 				12DE6C2D1E29D06800FD08A5 /* main.swift */,
@@ -156,6 +167,7 @@
 				12DE6C2E1E29D06800FD08A5 /* main.swift in Sources */,
 				12DE6C3A1E29D0EA00FD08A5 /* Collection+SafeSubscript.swift in Sources */,
 				12DE6C391E29D0EA00FD08A5 /* Array+groups.swift in Sources */,
+				1216EE9A1E2C4FEB00698057 /* SwiftyJSON.swift in Sources */,
 				12DE6C3C1E29D0EA00FD08A5 /* IO.swift in Sources */,
 				12DE6C3B1E29D0EA00FD08A5 /* String+Subscripting.swift in Sources */,
 			);
@@ -255,7 +267,9 @@
 		12DE6C321E29D06800FD08A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				DEVELOPMENT_TEAM = 65JJ25F4V6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/Frameworks @loader_path/Frameworks @executable_path";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -264,7 +278,9 @@
 		12DE6C331E29D06800FD08A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				DEVELOPMENT_TEAM = 65JJ25F4V6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/Frameworks @loader_path/Frameworks @executable_path";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

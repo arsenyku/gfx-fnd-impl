@@ -28,6 +28,10 @@ func main()
   
 
   print ("\(inputFile) \(outputFile ?? "")")
+  
+  let json = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
+  print (json)
+  
 }
 
 
