@@ -28,14 +28,19 @@ class PNMImage
   let width:Int
   let height:Int
   let type:PNMType
-  let maxGrayscale:Int
+  let maxScale:Int
   
-  required init(type:PNMType, width:Int, height:Int, maxGrayscale:Int = 1, pixels:[[Pixel]])
+  let left:Int = 0
+  let top:Int = 0
+  var right:Int { return width - 1 }
+  var bottom:Int { return height - 1 }
+  
+  required init(type:PNMType, width:Int, height:Int, maxScale:Int = 1, pixels:[[Pixel]])
   {
     self.type = type
     self.width = width
     self.height = height
-    self.maxGrayscale = (type == .BlackAndWhite) ? 1 : maxGrayscale
+    self.maxScale = (type == .BlackAndWhite) ? 1 : maxScale
     self.pixels = pixels
   }
   
@@ -56,11 +61,11 @@ class PNMImage
 
     let pixelStart = (pnmType == .BlackAndWhite) ? 2 : 3
 
-    let maxGrayscale = (pnmType == .BlackAndWhite) ? 1 : Int(inputLines[safe: 2]!) ?? 0
+    let maxScale = (pnmType == .BlackAndWhite) ? 1 : Int(inputLines[safe: 2]!) ?? 0
 
     let pixels = PNMImage.pixelTable(from:Array(inputLines[pixelStart..<inputLines.count]), ofType:pnmType)
     
-    self.init(type:pnmType, width:width, height:height, maxGrayscale:maxGrayscale, pixels:pixels)
+    self.init(type:pnmType, width:width, height:height, maxScale:maxScale, pixels:pixels)
 
   }
   
@@ -78,7 +83,7 @@ class PNMImage
     var scaled = [[Pixel]]()
     hScaled.forEach({ row in scaled.append(contentsOf: Array(repeatElement(row, count: factor)) ) })
     
-    return PNMImage(type:type, width:width*factor, height:height*factor, maxGrayscale:maxGrayscale, pixels:scaled)
+    return PNMImage(type:type, width:width*factor, height:height*factor, maxScale:maxScale, pixels:scaled)
   }
   
   public func drawLine(start:(x:Int, y:Int), end:(x:Int, y:Int))
@@ -123,7 +128,7 @@ class PNMImage
     
     if (type != .BlackAndWhite)
     {
-      output += String(maxGrayscale) + "\n"
+      output += String(maxScale) + "\n"
     }
     
     output += pixels.reduce("", { partial, row in partial + row.map({ $0.output }).joined(separator: " ") + "\n" })
@@ -169,17 +174,42 @@ class PNMImage
     return result
   }
   
-  class func imageOfSize(width:Int, height:Int, type:PNMType = .BlackAndWhite) -> PNMImage
+  class func imageOfSize(width:Int, height:Int, type:PNMType = .BlackAndWhite, max:Int = 1) -> PNMImage
   {
     let pixelTable = (0..<height)
       .map({ _ in [Pixel]() })
       .map({ _ -> [Pixel] in Array(repeatElement(Pixel(on:false), count: width)) })
     
-    return PNMImage(type: type, width: width, height: height, pixels: pixelTable)
+    return PNMImage(type: type, width: width, height: height, maxScale:max, pixels: pixelTable)
   }
 }
 
+extension Pixel
+{
+  convenience init(colour:Colour)
+  {
+    self.init(r:colour.r, g:colour.g, b:colour.b, maxColour:colour.max)
+  }
+}
 
+extension PNMImage
+{
+  func paintRect(p1:Point, p2:Point, colour:Colour)
+  {
+    let topLeft:Point = (max(min(p1.x, p2.x), left), max(min(p1.y, p2.y), top))
+    let bottomRight:Point = (min(max(p1.x, p2.x), right), min(max(p1.y, p2.y), bottom))
+    
+    let rows = stride(from: topLeft.y, through:bottomRight.y, by: 1)
+    let columns = stride(from: topLeft.x, through: bottomRight.x, by: 1)
+    
+    rows.forEach({ row in
+      columns.forEach({ column in
+        pixels[row][column] = Pixel(colour:colour)
+      })
+    })
+    
+  }
+}
 
 
 

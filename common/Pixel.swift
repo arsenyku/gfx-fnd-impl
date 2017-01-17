@@ -16,18 +16,18 @@ class Pixel:CustomStringConvertible
   let green:Int
   let blue:Int
   
-  let maxGrayscale:Int?
+  let maxScale:Int?
   let pad = " "
   let padLength:Int
   let pnmType:PNMType
   
-  required init(r:Int, g:Int, b:Int)
+  required init(r:Int, g:Int, b:Int, maxColour:Int = DEFAULT_MAX_GRAYSCALE)
   {
     red = r
     green = g
     blue = b
     
-    maxGrayscale = nil
+    maxScale = maxColour
     pnmType = .RGB
     padLength = String(max(r, g, b)).length
   }
@@ -38,7 +38,7 @@ class Pixel:CustomStringConvertible
     green = grayscale
     blue = grayscale
     
-    self.maxGrayscale = maxGrayscale
+    self.maxScale = maxGrayscale
     pnmType = (maxGrayscale == 0) ? .BlackAndWhite : .Grayscale
     padLength = String(maxGrayscale).length
   }
