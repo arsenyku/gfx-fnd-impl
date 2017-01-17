@@ -53,7 +53,7 @@
 		1260AB331E2C97BA00FC553C /* IO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../../common/IO.swift; sourceTree = "<group>"; };
 		1260AB341E2C97BA00FC553C /* PNMImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNMImage.swift; path = ../../common/PNMImage.swift; sourceTree = "<group>"; };
 		1260AB351E2C97BA00FC553C /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pixel.swift; path = ../../common/Pixel.swift; sourceTree = "<group>"; };
-		1260AB3A1E2C97EC00FC553C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
+		1260AB3A1E2C97EC00FC553C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		1260AB3C1E2C99D300FC553C /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1260AB401E2CA21000FC553C /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */

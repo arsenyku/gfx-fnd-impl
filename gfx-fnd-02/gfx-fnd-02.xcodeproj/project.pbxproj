@@ -40,7 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
+		1216EE991E2C4FEB00698057 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		1260AB131E2C773F00FC553C /* Dictionary+Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Filter.swift"; path = "../../common/Extensions/Dictionary+Filter.swift"; sourceTree = "<group>"; };
 		12DE6C2A1E29D06800FD08A5 /* gfx-fnd-02 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-02"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DE6C2D1E29D06800FD08A5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
