@@ -31,7 +31,8 @@ fi
 if [ "$1" = "03" ]; then
 
 ../bin/gfx-fnd-03
-../bin/gfx-fnd-03 startImage.json
+../bin/gfx-fnd-03 startImage.json ~/Desktop/skyAndGround.pnm
+../bin/pnmtopng ~/Desktop/skyAndGround.pnm > ~/Desktop/skyAndGround.png
 
 exit
 fi
