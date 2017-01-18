@@ -73,21 +73,30 @@ func main()
     })
   
   let midline = Int(floor(Float(screen.height)/2.0))
+  let heightAboveEyeLevel:Float = 1.0
   
   cameraRays.enumerated()
     .forEach({ offset, cameraRay in
-    walls.forEach({ wall in
-      if let intersect = cameraRay.intersection(with: Line(forWall:wall))
-      {
-        let distance = intersect.distance(to: camera.point)
-        let heightAboveEyeLevel:Float = 1.0
-        let angleToTop = atan2(heightAboveEyeLevel, distance)   //atan(heightAboveEyeLevel/distance)
-      
-        let halfWallPixelCount = Int(ceil(angleToTop / (2.0*halfPixelAngleHeight))) - 1
-
-        screen.drawLine(start: (offset, midline+halfWallPixelCount), end: (offset, midline-halfWallPixelCount), colour: wall.colour)
-      }
-    })
+      walls.map({ wall -> (distance:Float, wall:Wall?) in
+        if let intersect = cameraRay.intersection(with: Line(forWall:wall))
+        {
+          let distance = intersect.distance(to: camera.point)
+          return (distance, wall)
+        }
+        return (-1.0, nil)
+      })
+        .filter({ $0.wall != nil })
+        .sorted(by: { $0.distance < $1.distance })
+        .reversed()
+        .forEach({ wallTuple in
+          let distance = wallTuple.distance
+          let wall = wallTuple.wall!
+          
+          let angleToTop = atan2(heightAboveEyeLevel, distance)
+          let halfWallPixelCount = Int(ceil(angleToTop / (2.0*halfPixelAngleHeight))) - 1
+          
+          screen.drawLine(start: (offset, midline+halfWallPixelCount), end: (offset, midline-halfWallPixelCount), colour: wall.colour)
+        })
   })
   
   screen.write(toFile: outputFile)
