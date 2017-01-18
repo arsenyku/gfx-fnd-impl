@@ -31,8 +31,9 @@ fi
 if [ "$1" = "03" ]; then
 
 ../bin/gfx-fnd-03
-../bin/gfx-fnd-03 startImage.json ~/Desktop/skyAndGround.pnm
-../bin/pnmtopng ~/Desktop/skyAndGround.pnm > ~/Desktop/skyAndGround.png
+../bin/gfx-fnd-03 ~/Desktop/7walls.json ~/Desktop/7walls.pnm
+../bin/pnmtopng ~/Desktop/7walls.pnm > ~/Desktop/7walls.png
+
 
 exit
 fi
@@ -41,6 +42,7 @@ cd ../../gfx-fnd-tests
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-02 02
+./run_tests ../gfx-fnd-impl/bin/gfx-fnd-03 03
 
 exit 
 
@@ -58,3 +60,9 @@ exit
 
 
 ../bin/gfx-fnd-02 ../../gfx-fnd-tests/02/02_origin_simple_walls/in.json
+#../bin/gfx-fnd-03 startImage.json ~/Desktop/skyAndGround.pnm
+#../bin/gfx-fnd-03 exImage.json ~/Desktop/exImage.pnm
+#../bin/gfx-fnd-03 ~/Desktop/onewall.in.json ~/Desktop/onewall.pnm
+#../bin/pnmtopng ~/Desktop/onewall.pnm > ~/Desktop/onewall.png
+#../bin/pnmtopng ~/Desktop/skyAndGround.pnm > ~/Desktop/skyAndGround.png
+#../bin/gfx-fnd-03 ../../gfx-fnd-tests/03/01_empty_scene/in.json ~/Desktop/03-01.json

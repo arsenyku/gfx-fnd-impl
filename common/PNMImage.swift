@@ -20,7 +20,7 @@ enum PNMType:Int {
 }
 
 typealias Colour = (r:Int, g:Int, b:Int, max:Int)
-typealias Point = (x:Int, y:Int)
+typealias ScreenPoint = (x:Int, y:Int)
 
 class PNMImage
 {
@@ -85,38 +85,38 @@ class PNMImage
     
     return PNMImage(type:type, width:width*factor, height:height*factor, maxScale:maxScale, pixels:scaled)
   }
-  
-  public func drawLine(start:(x:Int, y:Int), end:(x:Int, y:Int))
+
+  public func drawLine(start:ScreenPoint, end:ScreenPoint, colour:Colour?)
   {
+    let drawing = (colour == nil) ? Pixel(on: true) : Pixel(colour: colour!)
+    
     let dx = Double(end.x - start.x)
     let dy = Double(end.y - start.y)
     let m = dy/dx
     let b = Double(start.y) - m * Double(start.x)
     
     let vertical = (start.x == end.x)
-    let horizontal = (start.y == end.y)
-    
+
     let domain = stride(from: start.x, through: end.x, by: (start.x <= end.x) ? 1 : -1)
     let range = stride(from: start.y, through: end.y, by: (start.y <= end.y) ? 1 : -1)
-
+    
     domain.forEach({ column in
-      
       let x = Double(column)
       let y = m*x + b
-      
+
       let row = vertical ? start.y : Int(round(y))
-      
-      pixels[row][column] = Pixel(on: true)
+
+      pixels[row][column] = drawing
     })
     
     range.forEach({ row in
       
       let y = Double(row)
       let x = (y - b) / m
-      
-      let column = horizontal ? start.x : Int(round(x))
-      
-      pixels[row][column] = Pixel(on: true)
+
+      let column = vertical ? start.x : Int(round(x))
+
+      pixels[row][column] = drawing
     })
   }
   
@@ -194,20 +194,19 @@ extension Pixel
 
 extension PNMImage
 {
-  func paintRect(p1:Point, p2:Point, colour:Colour)
+  func paintRect(p1:ScreenPoint, p2:ScreenPoint, colour:Colour)
   {
-    let topLeft:Point = (max(min(p1.x, p2.x), left), max(min(p1.y, p2.y), top))
-    let bottomRight:Point = (min(max(p1.x, p2.x), right), min(max(p1.y, p2.y), bottom))
+    let topLeft:ScreenPoint = (max(min(p1.x, p2.x), left), max(min(p1.y, p2.y), top))
+    let bottomRight:ScreenPoint = (min(max(p1.x, p2.x), right), min(max(p1.y, p2.y), bottom))
     
-    let rows = stride(from: topLeft.y, through:bottomRight.y, by: 1)
-    let columns = stride(from: topLeft.x, through: bottomRight.x, by: 1)
+    let rows = topLeft.y...bottomRight.y
+    let columns = topLeft.x...bottomRight.x
     
     rows.forEach({ row in
       columns.forEach({ column in
         pixels[row][column] = Pixel(colour:colour)
       })
     })
-    
   }
 }
 

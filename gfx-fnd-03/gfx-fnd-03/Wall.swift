@@ -23,7 +23,7 @@ class Wall: CustomStringConvertible
   
   convenience init(fromJSON wallJson:JSON, maxColour:Int)
   {
-    self.init(start:(wallJson["x0"].intValue,wallJson["y0"].intValue), end:(wallJson["x1"].intValue,wallJson["y1"].intValue), colour:(wallJson["color"][0].intValue,wallJson["color"][1].intValue,wallJson["color"][2].intValue, maxColour))
+    self.init(start:Point(wallJson["x0"].floatValue,wallJson["y0"].floatValue), end:Point(wallJson["x1"].floatValue,wallJson["y1"].floatValue), colour:(wallJson["color"][0].intValue,wallJson["color"][1].intValue,wallJson["color"][2].intValue, maxColour))
   }
   
   var description: String

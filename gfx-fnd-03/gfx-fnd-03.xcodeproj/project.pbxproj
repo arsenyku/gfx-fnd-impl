@@ -19,6 +19,7 @@
 		1260AB3B1E2C97EC00FC553C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB3A1E2C97EC00FC553C /* SwiftyJSON.swift */; };
 		1260AB3D1E2C99D300FC553C /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB3C1E2C99D300FC553C /* Camera.swift */; };
 		1260AB411E2CA21000FC553C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB401E2CA21000FC553C /* Wall.swift */; };
+		1260AB431E2DFE9300FC553C /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB421E2DFE9300FC553C /* Line.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,7 @@
 		1260AB3A1E2C97EC00FC553C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 		1260AB3C1E2C99D300FC553C /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1260AB401E2CA21000FC553C /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		1260AB421E2DFE9300FC553C /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				1260AB2A1E2C977D00FC553C /* Extensions */,
 				1260AB3C1E2C99D300FC553C /* Camera.swift */,
 				1260AB331E2C97BA00FC553C /* IO.swift */,
+				1260AB421E2DFE9300FC553C /* Line.swift */,
 				1260AB351E2C97BA00FC553C /* Pixel.swift */,
 				1260AB341E2C97BA00FC553C /* PNMImage.swift */,
 				1260AB401E2CA21000FC553C /* Wall.swift */,
@@ -188,6 +191,7 @@
 				1260AB2F1E2C97A100FC553C /* Array+groups.swift in Sources */,
 				1260AB3D1E2C99D300FC553C /* Camera.swift in Sources */,
 				1260AB3B1E2C97EC00FC553C /* SwiftyJSON.swift in Sources */,
+				1260AB431E2DFE9300FC553C /* Line.swift in Sources */,
 				1260AB371E2C97BA00FC553C /* PNMImage.swift in Sources */,
 				1260AB361E2C97BA00FC553C /* IO.swift in Sources */,
 			);
