@@ -31,8 +31,8 @@ fi
 if [ "$1" = "03" ]; then
 
 ../bin/gfx-fnd-03
-../bin/gfx-fnd-03 ~/Desktop/7walls.json ~/Desktop/7walls.pnm
-../bin/pnmtopng ~/Desktop/7walls.pnm > ~/Desktop/7walls.png
+../bin/gfx-fnd-03 ~/Desktop/gfx/7walls.json ~/Desktop/gfx/7walls.pnm
+../bin/pnmtopng ~/Desktop/gfx/7walls.pnm > ~/Desktop/gfx/7walls.png
 
 
 exit
