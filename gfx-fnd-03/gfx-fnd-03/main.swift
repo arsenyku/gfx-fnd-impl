@@ -93,7 +93,7 @@ func main()
           let wall = wallTuple.wall!
           
           let angleToTop = atan2(heightAboveEyeLevel, distance)
-          let halfWallPixelCount = Int(ceil(angleToTop / (2.0*halfPixelAngleHeight))) - 1
+          let halfWallPixelCount = Int(floor(angleToTop / (2.0*halfPixelAngleHeight)))
           
           screen.drawLine(start: (offset, midline+halfWallPixelCount), end: (offset, midline-halfWallPixelCount), colour: wall.colour)
         })

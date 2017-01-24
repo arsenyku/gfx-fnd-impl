@@ -77,7 +77,7 @@ class Pixel:CustomStringConvertible
   
   func padded(_ number:Int) -> String
   {
-    return String(number).padding(toLength: padLength, withPad: pad, startingAt: 0)
+    return String(number)  //.padding(toLength: padLength, withPad: pad, startingAt: 0)
   }
   
   var description: String

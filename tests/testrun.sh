@@ -32,7 +32,7 @@ if [ "$1" = "03" ]; then
 
 ../bin/gfx-fnd-03
 ../bin/gfx-fnd-03 ~/Desktop/gfx/7walls.json ~/Desktop/gfx/7walls.pnm
-../bin/pnmtopng ~/Desktop/gfx/7walls.pnm > ~/Desktop/gfx/7walls.png
+pnmtopng ~/Desktop/gfx/7walls.pnm > ~/Desktop/gfx/7walls.png
 
 
 exit
