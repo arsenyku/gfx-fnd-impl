@@ -39,11 +39,24 @@ class Point:CustomStringConvertible
 class Shape:CustomStringConvertible
 {
   let vertices:[Point]
+  let edges:[Line]
   let colour:Colour
   
   required init(points:[Point], colour:Colour)
   {
+    var lines = [Line]()
+    (points.startIndex..<points.endIndex-1).forEach({ index in
+      print (index, points[index], points[index+1])
+      lines.append(Line(from: points[index], to: points[index+1]))
+    })
+
+    if let lastPoint = points.last, let firstPoint = points.first
+    {
+      lines.append(Line(from: lastPoint, to: firstPoint))
+    }
+    
     vertices = points
+    edges = lines
     self.colour = colour
   }
   

@@ -285,15 +285,8 @@ extension PNMImage
       let testLine = Line(from: Point(x,y), to: Point(x,y+Float(height*10)))
       
       triangles.forEach({ triangle in
-        let vertices = triangle.vertices
-        let triangleLines = [
-          Line(from: vertices[0], to: vertices[1]),
-          Line(from: vertices[1], to: vertices[2]),
-          Line(from: vertices[2], to: vertices[0])
-        ]
-
-        let intersections = triangleLines
-          .map({ testLine.intersection(with: $0, includingEndPoints: true) })
+        let intersections = triangle.edges
+          .map({ edge in testLine.intersection(with: edge, includingEndPoints: true) })
           .filter({ $0 != nil })
           .map({ $0! })
         
