@@ -272,10 +272,83 @@ extension PNMImage
     })
   }
 
+  public func draw(triangles:[Shape]) -> PNMImage
+  {
+    let domain = stride(from: left, through: right, by: 1)
+
+    var hits:[(ScreenPoint, Shape)] = []
+    
+    domain.forEach({ pixelX in
+      let x = Float(pixelX) + 0.5
+      let y:Float = 0.0
+
+      let testLine = Line(from: Point(x,y), to: Point(x,y+Float(height*10)))
+      
+      triangles.forEach({ triangle in
+        let vertices = triangle.vertices
+        let triangleLines = [
+          Line(from: vertices[0], to: vertices[1]),
+          Line(from: vertices[1], to: vertices[2]),
+          Line(from: vertices[2], to: vertices[0])
+        ]
+
+        let intersections = triangleLines
+          .map({ testLine.intersection(with: $0, includingEndPoints: true) })
+          .filter({ $0 != nil })
+          .map({ $0! })
+        
+        guard let minHitY = intersections.map({ $0.y }).min(),
+          let maxHitY = intersections.map({ $0.y }).max()
+        else
+        {
+          return
+        }
+
+        let hitTop = minHitY - 1
+        let hitBottom = maxHitY + 1
+        
+        stride(from: hitTop, through: hitBottom, by: 1)
+          .filter({ hitY in
+            let midY = Float(Int(floor(hitY))) + 0.5
+            
+            let inBetween = (midY >= minHitY) && (midY <= maxHitY)
+
+            // Delay evaluation of =~ if unnecessary
+            return inBetween || ( (midY =~ minHitY) || (midY =~ maxHitY) )
+
+          })
+          .forEach({ hitY in
+            let pixelY = Int(floor(hitY))
+            hits.append((ScreenPoint(pixelX, pixelY), triangle))
+          })
+      })
+        
+    })
+    
+    hits.forEach({ point, shape in
+      let row = point.y
+      let column = point.x
+      guard (row >= 0 && row < height),
+        (column >= 0 && column < height)
+        else { return }
+      pixels[row][column] = Pixel(colour: shape.colour)
+    })
+    
+    
+    return self
+  }
   
 }
 
+infix operator =~: ComparisonPrecedence
+fileprivate extension Float
+{
+  static let AlmostEqualEpsilon:Float = 1e-5
+  static func =~(lhs: Float, rhs: Float) -> Bool {
+    return abs(lhs - rhs) <= AlmostEqualEpsilon
+  }
 
+}
 
 
 

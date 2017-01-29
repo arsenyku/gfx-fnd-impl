@@ -62,7 +62,7 @@ func parseInputJson(contents json:JSON) -> (background:Colour, width:Int, height
       return Point(jsonPoint[0].floatValue,jsonPoint[1].floatValue)
     })
     
-    let colour = Colour(jsonColour[0], jsonColour[1], jsonColour[1], Pixel.DEFAULT_MAX_GRAYSCALE)
+    let colour = Colour(jsonColour[0], jsonColour[1], jsonColour[2], Pixel.DEFAULT_MAX_GRAYSCALE)
     
     return Shape(points:points, colour:colour)
   })
@@ -74,18 +74,13 @@ func parseInputJson(contents json:JSON) -> (background:Colour, width:Int, height
 
 func main()
 {
-  
   let (inputFile, outputFile) = readArgs()
   let jsonInput = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
-  let (bg, width, height, _) = parseInputJson(contents: jsonInput)
- 
-//  print (bg)
-//  print (width)
-//  print (height)
-//  print (triangles)
+  let (bg, width, height, triangles) = parseInputJson(contents: jsonInput)
   
   PNMImage(type: .RGB, width: width, height: height, maxScale: Pixel.DEFAULT_MAX_GRAYSCALE)
     .paintRect(p1: (0,0), p2: (width-1, height-1), colour: bg)
+    .draw(triangles:triangles)
     .write(toFile: outputFile)
 
 }

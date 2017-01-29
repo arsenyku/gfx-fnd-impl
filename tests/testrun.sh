@@ -48,7 +48,16 @@ fi
 if [ "$1" = "10" ]; then
 
 solution=$solutionBin/gfx-fnd-10
-./run_tests $solution 10 00
+#./run_tests $solution 10 00
+
+eval $solution ~/Desktop/gfx/tri01.json ~/Desktop/gfx/tri01.pnm
+pnmtopng ~/Desktop/gfx/tri01.pnm > ~/Desktop/gfx/tri01.png
+
+eval $solution ~/Desktop/gfx/tri02.json ~/Desktop/gfx/tri02.pnm
+pnmtopng ~/Desktop/gfx/tri02.pnm > ~/Desktop/gfx/tri02.png
+
+eval $solution 10/01_simple_draw/in.json ~/Desktop/gfx/10-01-out.pnm
+pnmtopng ~/Desktop/gfx/10-01-out.pnm > ~/Desktop/gfx/10-01-out.png
 
 exit
 fi

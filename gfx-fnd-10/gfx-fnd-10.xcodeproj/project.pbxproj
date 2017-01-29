@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		120C27771E3DB20D000D3839 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C27761E3DB20D000D3839 /* Shape.swift */; };
+		120C277B1E3DC14F000D3839 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C277A1E3DC14F000D3839 /* Line.swift */; };
 		1260AB511E373C7500FC553C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB501E373C7500FC553C /* main.swift */; };
 		1260AB5D1E384F4700FC553C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB5C1E384F4700FC553C /* SwiftyJSON.swift */; };
 		1260AB631E384FCB00FC553C /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB5F1E384FCB00FC553C /* Array+groups.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		120C27761E3DB20D000D3839 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shape.swift; path = ../../common/Shape.swift; sourceTree = "<group>"; };
+		120C277A1E3DC14F000D3839 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Line.swift; path = ../../common/Line.swift; sourceTree = "<group>"; };
 		1260AB4D1E373C7500FC553C /* gfx-fnd-10 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-10"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1260AB501E373C7500FC553C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1260AB5C1E384F4700FC553C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -89,8 +91,9 @@
 				1260AB5E1E384F8E00FC553C /* Extensions */,
 				1260AB5B1E384EC700FC553C /* External */,
 				1260AB691E38514200FC553C /* IO.swift */,
-				1260AB671E38514200FC553C /* PNMImage.swift */,
+				120C277A1E3DC14F000D3839 /* Line.swift */,
 				1260AB681E38514200FC553C /* Pixel.swift */,
+				1260AB671E38514200FC553C /* PNMImage.swift */,
 				120C27761E3DB20D000D3839 /* Shape.swift */,
 				1260AB501E373C7500FC553C /* main.swift */,
 			);
@@ -185,6 +188,7 @@
 				1260AB661E384FCB00FC553C /* String+Subscripting.swift in Sources */,
 				1260AB5D1E384F4700FC553C /* SwiftyJSON.swift in Sources */,
 				1260AB6A1E38514200FC553C /* PNMImage.swift in Sources */,
+				120C277B1E3DC14F000D3839 /* Line.swift in Sources */,
 				1260AB651E384FCB00FC553C /* Dictionary+Filter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
