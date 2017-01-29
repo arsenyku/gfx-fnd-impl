@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1260AB511E373C7500FC553C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB501E373C7500FC553C /* main.swift */; };
+		1260AB5D1E384F4700FC553C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB5C1E384F4700FC553C /* SwiftyJSON.swift */; };
+		1260AB631E384FCB00FC553C /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB5F1E384FCB00FC553C /* Array+groups.swift */; };
+		1260AB641E384FCB00FC553C /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB601E384FCB00FC553C /* Collection+SafeSubscript.swift */; };
+		1260AB651E384FCB00FC553C /* Dictionary+Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB611E384FCB00FC553C /* Dictionary+Filter.swift */; };
+		1260AB661E384FCB00FC553C /* String+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB621E384FCB00FC553C /* String+Subscripting.swift */; };
+		1260AB6A1E38514200FC553C /* PNMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB671E38514200FC553C /* PNMImage.swift */; };
+		1260AB6B1E38514200FC553C /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB681E38514200FC553C /* Pixel.swift */; };
+		1260AB6C1E38514200FC553C /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB691E38514200FC553C /* IO.swift */; };
+		1260AB6E1E3851D100FC553C /* gfx-fnd-10 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1260AB4D1E373C7500FC553C /* gfx-fnd-10 */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,11 +29,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		1260AB6D1E3851C800FC553C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Users/asu/dev/training/gfx/gfx-fnd-impl/bin";
+			dstSubfolderSpec = 0;
+			files = (
+				1260AB6E1E3851D100FC553C /* gfx-fnd-10 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1260AB4D1E373C7500FC553C /* gfx-fnd-10 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-10"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1260AB501E373C7500FC553C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1260AB5C1E384F4700FC553C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
+		1260AB5F1E384FCB00FC553C /* Array+groups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+groups.swift"; path = "../../common/Extensions/Array+groups.swift"; sourceTree = "<group>"; };
+		1260AB601E384FCB00FC553C /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+SafeSubscript.swift"; path = "../../common/Extensions/Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
+		1260AB611E384FCB00FC553C /* Dictionary+Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Filter.swift"; path = "../../common/Extensions/Dictionary+Filter.swift"; sourceTree = "<group>"; };
+		1260AB621E384FCB00FC553C /* String+Subscripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Subscripting.swift"; path = "../../common/Extensions/String+Subscripting.swift"; sourceTree = "<group>"; };
+		1260AB671E38514200FC553C /* PNMImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNMImage.swift; path = ../../common/PNMImage.swift; sourceTree = "<group>"; };
+		1260AB681E38514200FC553C /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pixel.swift; path = ../../common/Pixel.swift; sourceTree = "<group>"; };
+		1260AB691E38514200FC553C /* IO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../../common/IO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +84,33 @@
 		1260AB4F1E373C7500FC553C /* gfx-fnd-10 */ = {
 			isa = PBXGroup;
 			children = (
+				1260AB5E1E384F8E00FC553C /* Extensions */,
+				1260AB5B1E384EC700FC553C /* External */,
+				1260AB671E38514200FC553C /* PNMImage.swift */,
+				1260AB681E38514200FC553C /* Pixel.swift */,
+				1260AB691E38514200FC553C /* IO.swift */,
 				1260AB501E373C7500FC553C /* main.swift */,
 			);
 			path = "gfx-fnd-10";
+			sourceTree = "<group>";
+		};
+		1260AB5B1E384EC700FC553C /* External */ = {
+			isa = PBXGroup;
+			children = (
+				1260AB5C1E384F4700FC553C /* SwiftyJSON.swift */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		1260AB5E1E384F8E00FC553C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1260AB5F1E384FCB00FC553C /* Array+groups.swift */,
+				1260AB601E384FCB00FC553C /* Collection+SafeSubscript.swift */,
+				1260AB611E384FCB00FC553C /* Dictionary+Filter.swift */,
+				1260AB621E384FCB00FC553C /* String+Subscripting.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,6 +123,7 @@
 				1260AB491E373C7500FC553C /* Sources */,
 				1260AB4A1E373C7500FC553C /* Frameworks */,
 				1260AB4B1E373C7500FC553C /* CopyFiles */,
+				1260AB6D1E3851C800FC553C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -121,7 +173,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1260AB6B1E38514200FC553C /* Pixel.swift in Sources */,
+				1260AB631E384FCB00FC553C /* Array+groups.swift in Sources */,
+				1260AB6C1E38514200FC553C /* IO.swift in Sources */,
 				1260AB511E373C7500FC553C /* main.swift in Sources */,
+				1260AB641E384FCB00FC553C /* Collection+SafeSubscript.swift in Sources */,
+				1260AB661E384FCB00FC553C /* String+Subscripting.swift in Sources */,
+				1260AB5D1E384F4700FC553C /* SwiftyJSON.swift in Sources */,
+				1260AB6A1E38514200FC553C /* PNMImage.swift in Sources */,
+				1260AB651E384FCB00FC553C /* Dictionary+Filter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
