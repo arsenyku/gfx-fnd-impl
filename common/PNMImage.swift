@@ -35,16 +35,27 @@ class PNMImage
   var right:Int { return width - 1 }
   var bottom:Int { return height - 1 }
   
-  required init(type:PNMType, width:Int, height:Int, maxScale:Int = 1, pixels:[[Pixel]])
+  required init(type:PNMType, width:Int, height:Int, maxScale:Int = 1)
   {
     self.type = type
     self.width = width
     self.height = height
     self.maxScale = (type == .BlackAndWhite) ? 1 : maxScale
+    self.pixels = (0..<height)
+      .map({ _ in [Pixel]() })
+      .map({ _ -> [Pixel] in Array(repeatElement(Pixel(on:false), count: width)) })
+  }
+  
+  required init(type:PNMType, maxScale:Int = 1, pixels:[[Pixel]])
+  {
+    self.type = type
+    self.width = (pixels.first != nil) ? pixels.first!.count : 0
+    self.height = pixels.count
+    self.maxScale = (type == .BlackAndWhite) ? 1 : maxScale
     self.pixels = pixels
   }
   
-  convenience init(fromFile pathAndFilename:String?)
+  convenience init?(fromFile pathAndFilename:String?)
   {
     let inputLines = (pathAndFilename == nil) ?
       readLines() :
@@ -65,7 +76,24 @@ class PNMImage
 
     let pixels = PNMImage.pixelTable(from:Array(inputLines[pixelStart..<inputLines.count]), ofType:pnmType)
     
-    self.init(type:pnmType, width:width, height:height, maxScale:maxScale, pixels:pixels)
+    let rows = pixels.count
+    let columns = (rows > 0) ? pixels.first!.count : 0
+
+    guard columns == pixels.reduce(columns, {$0 == $1.count ? columns : Int.min})
+      else
+    {
+      print("The given pixels must have equal length rows.")
+      return nil
+    }
+    
+    guard (width != columns || height == rows)
+      else
+    {
+      print ("PNM Image Dimensions (W:\(width) x H:\(columns)) do not match the given pixels (W:\(columns) x H:\(rows)).")
+      return nil
+    }
+    
+    self.init(type:pnmType, maxScale:maxScale, pixels:pixels)
 
   }
   
@@ -83,10 +111,10 @@ class PNMImage
     var scaled = [[Pixel]]()
     hScaled.forEach({ row in scaled.append(contentsOf: Array(repeatElement(row, count: factor)) ) })
     
-    return PNMImage(type:type, width:width*factor, height:height*factor, maxScale:maxScale, pixels:scaled)
+    return PNMImage(type:type, maxScale:maxScale, pixels:scaled)
   }
 
-  public func drawLine(start:ScreenPoint, end:ScreenPoint, colour:Colour?)
+  public func drawLine(start:ScreenPoint, end:ScreenPoint, colour:Colour? = nil)
   {
     let drawing = (colour == nil) ? Pixel(on: true) : Pixel(colour: colour!)
     
@@ -96,6 +124,7 @@ class PNMImage
     let b = Double(start.y) - m * Double(start.x)
     
     let vertical = (start.x == end.x)
+    let horizontal = (start.y == end.y)
 
     let domain = stride(from: start.x, through: end.x, by: (start.x <= end.x) ? 1 : -1)
     let range = stride(from: start.y, through: end.y, by: (start.y <= end.y) ? 1 : -1)
@@ -114,7 +143,7 @@ class PNMImage
       let y = Double(row)
       let x = (y - b) / m
 
-      let column = vertical ? start.x : Int(round(x))
+      let column = (vertical||horizontal) ? start.x : Int(round(x))
 
       pixels[row][column] = drawing
     })
@@ -176,11 +205,7 @@ class PNMImage
   
   class func imageOfSize(width:Int, height:Int, type:PNMType = .BlackAndWhite, max:Int = 1) -> PNMImage
   {
-    let pixelTable = (0..<height)
-      .map({ _ in [Pixel]() })
-      .map({ _ -> [Pixel] in Array(repeatElement(Pixel(on:false), count: width)) })
-    
-    return PNMImage(type: type, width: width, height: height, maxScale:max, pixels: pixelTable)
+    return PNMImage(type: type, width: width, height: height, maxScale:max)
   }
 }
 

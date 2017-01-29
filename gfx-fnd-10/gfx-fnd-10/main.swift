@@ -43,7 +43,7 @@ func main()
 
   print (jsonInput.count)
   
-  PNMImage(type: .RGB, width: 100, height: 100, maxScale: 255, pixels: []).write(toFile: outputFile)
+  PNMImage(type: .RGB, width: 100, height: 100, maxScale: 255).write(toFile: outputFile)
 
 }
 

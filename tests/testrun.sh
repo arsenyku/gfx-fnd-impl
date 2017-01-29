@@ -20,7 +20,7 @@ if [ "$1" = "01" ]; then
 
 solution=$solutionBin/gfx-fnd-01
 eval $solution
-eval $solution 1 8x7 1,2 3,4
+eval $solution 8x7 1,2 3,4
 eval $solution 10x20 0,0 9,19
 
 exit

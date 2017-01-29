@@ -30,7 +30,12 @@ func main()
   let inputFile = arguments[safe:2]
   let outputFile = arguments[safe: 3]
   
-  let original = PNMImage(fromFile: inputFile!)
+  guard let original = PNMImage(fromFile: inputFile!)
+  else
+  {
+    exit(1)
+  }
+  
   let scaled = original.scaled(by: factor)
   
   scaled.write(toFile:outputFile)
