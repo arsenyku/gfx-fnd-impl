@@ -59,8 +59,25 @@ pnmtopng ~/Desktop/gfx/tri02.pnm > ~/Desktop/gfx/tri02.png
 eval $solution 10/01_simple_draw/in.json ~/Desktop/gfx/10-01-out.pnm
 pnmtopng ~/Desktop/gfx/10-01-out.pnm > ~/Desktop/gfx/10-01-out.png
 
+eval $solution ~/Desktop/gfx/triVertEdge-1.json ~/Desktop/gfx/triVertOut-1.pnm
+pnmtopng ~/Desktop/gfx/triVertOut-1.pnm > ~/Desktop/gfx/triVertOut-1.png
+
+#eval $solution 10/02_spiral/in.json ~/Desktop/gfx/10-02-out.pnm
+#pnmtopng ~/Desktop/gfx/10-02-out.pnm > ~/Desktop/gfx/10-02-out.png
+
 exit
 fi
+
+if [ "$1" = "11" ]; then
+
+#[0.5, 0.6, 0.8 ; 0.6, 0.5, 0.8 ; 0.4, 0.4, 0.4 ; 0.5, 0.6, 0.8]
+#[2.4, 1.6, 3.8 ; 0.6, 1.6, 2.9 ; 1.1, 9.4, 5.5 ; 2.4, 1.6, 3.8]
+#[1.9, 1.9, 1.9 ; 1.9, 0.9, 1.2 ; 6, 0.9, 12 ; 1.9, 1.9, 1.9]
+#[7.5, 9.5, 10.5 ; 3.3, 3.4, 3.2 ; 9.5, 7.5, 8.8 ; 7.5, 9.5, 10.5]
+
+exit
+fi
+
 
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
