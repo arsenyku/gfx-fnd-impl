@@ -46,7 +46,6 @@ class Shape:CustomStringConvertible
   {
     var lines = [Line]()
     (points.startIndex..<points.endIndex-1).forEach({ index in
-      print (index, points[index], points[index+1])
       lines.append(Line(from: points[index], to: points[index+1]))
     })
 
