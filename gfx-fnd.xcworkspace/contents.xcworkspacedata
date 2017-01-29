@@ -16,4 +16,7 @@
    <FileRef
       location = "group:gfx-fnd-10/gfx-fnd-10.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:gfx-fnd-11/gfx-fnd-11.xcodeproj">
+   </FileRef>
 </Workspace>
