@@ -219,7 +219,7 @@ extension Pixel
 
 extension PNMImage
 {
-  func paintRect(p1:ScreenPoint, p2:ScreenPoint, colour:Colour)
+  func paintRect(p1:ScreenPoint, p2:ScreenPoint, colour:Colour) -> PNMImage
   {
     let topLeft:ScreenPoint = (max(min(p1.x, p2.x), left), max(min(p1.y, p2.y), top))
     let bottomRight:ScreenPoint = (min(max(p1.x, p2.x), right), min(max(p1.y, p2.y), bottom))
@@ -232,6 +232,8 @@ extension PNMImage
         pixels[row][column] = Pixel(colour:colour)
       })
     })
+    
+    return self
   }
   
   typealias DrawFunction = (Int, Int) -> (Int)

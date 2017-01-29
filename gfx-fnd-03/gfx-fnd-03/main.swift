@@ -48,10 +48,10 @@ func main()
   let screen = PNMImage.imageOfSize(width: camera.viewWidth, height: camera.viewHeight, type: .RGB, max: maxColour)
   
   let skyBottom = Int(ceil(Float(screen.height)/2.0)) - 1
+  
   screen.paintRect(p1: (screen.left,screen.top), p2: (screen.right, skyBottom), colour: skyColour)
-  screen.paintRect(p1: (screen.left, skyBottom+1), p2: (screen.right, screen.bottom), colour: groundColour)
-
-  screen.write(toFile: outputFile)
+    .paintRect(p1: (screen.left, skyBottom+1), p2: (screen.right, screen.bottom), colour: groundColour)
+    .write(toFile: outputFile)
 
   let leftEdgeAngle = camera.theta + (camera.horizontalField/2.0)
     

@@ -35,15 +35,58 @@ func readArgs() -> (inputFile:String, outputFile:String?)
   
 }
 
+func parseInputJson(contents json:JSON) -> (background:Colour, width:Int, height:Int, triangles:[Shape])
+{
+  guard let jsonBg = json["background"].array?.map({ $0.int ?? 0 }),
+    let jsonHeight = json["height"].int,
+    let jsonWidth = json["width"].int,
+    let jsonTriangles = json["triangles"].array
+    else
+  {
+    print ("JSON content could not be parsed")
+    exit(1)
+  }
+  
+  let bgColour = Colour(jsonBg[0], jsonBg[1], jsonBg[2], Pixel.DEFAULT_MAX_GRAYSCALE)
+  let width = jsonWidth
+  let height = jsonHeight
+  let triangles = jsonTriangles.map({ jsonTriangle -> Shape? in
+    guard let jsonPoints = jsonTriangle["points"].array,
+      let jsonColour = jsonTriangle["color"].array?.map({ $0.int ?? 0 })
+      else
+    {
+      return nil
+    }
+    
+    let points = jsonPoints.map({ jsonPoint -> Point in
+      return Point(jsonPoint[0].floatValue,jsonPoint[1].floatValue)
+    })
+    
+    let colour = Colour(jsonColour[0], jsonColour[1], jsonColour[1], Pixel.DEFAULT_MAX_GRAYSCALE)
+    
+    return Shape(points:points, colour:colour)
+  })
+    .filter({ $0 != nil })
+    .map({ $0! })
+
+  return (bgColour, width, height, triangles)
+}
+
 func main()
 {
   
   let (inputFile, outputFile) = readArgs()
   let jsonInput = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
-
-  print (jsonInput.count)
+  let (bg, width, height, _) = parseInputJson(contents: jsonInput)
+ 
+//  print (bg)
+//  print (width)
+//  print (height)
+//  print (triangles)
   
-  PNMImage(type: .RGB, width: 100, height: 100, maxScale: 255).write(toFile: outputFile)
+  PNMImage(type: .RGB, width: width, height: height, maxScale: Pixel.DEFAULT_MAX_GRAYSCALE)
+    .paintRect(p1: (0,0), p2: (width-1, height-1), colour: bg)
+    .write(toFile: outputFile)
 
 }
 

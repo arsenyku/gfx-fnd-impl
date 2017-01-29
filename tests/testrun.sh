@@ -48,7 +48,7 @@ fi
 if [ "$1" = "10" ]; then
 
 solution=$solutionBin/gfx-fnd-10
-./run_tests $solution 10 
+./run_tests $solution 10 00
 
 exit
 fi

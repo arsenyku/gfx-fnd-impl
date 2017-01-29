@@ -8,25 +8,6 @@
 
 import Foundation
 
-class Point
-{
-  let x:Float
-  let y:Float
-  
-  required init(_ x:Float, _ y:Float)
-  {
-    self.x = x
-    self.y = y
-  }
-  
-  func distance(to otherPoint:Point) -> Float
-  {
-    let dx = otherPoint.x - self.x
-    let dy = otherPoint.y - self.y
-    return sqrt(dx*dx + dy*dy)
-  }
- 
-}
 class Line
 {
   let start:Point

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120C27791E3DB280000D3839 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C27781E3DB280000D3839 /* Shape.swift */; };
 		1260AB221E2C964300FC553C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB211E2C964300FC553C /* main.swift */; };
 		1260AB291E2C968300FC553C /* gfx-fnd-03 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1260AB1E1E2C964300FC553C /* gfx-fnd-03 */; };
 		1260AB2F1E2C97A100FC553C /* Array+groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260AB2B1E2C97A100FC553C /* Array+groups.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		120C27781E3DB280000D3839 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shape.swift; path = ../../common/Shape.swift; sourceTree = "<group>"; };
 		1260AB1E1E2C964300FC553C /* gfx-fnd-03 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "gfx-fnd-03"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1260AB211E2C964300FC553C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1260AB2B1E2C97A100FC553C /* Array+groups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+groups.swift"; path = "../../common/Extensions/Array+groups.swift"; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				1260AB3C1E2C99D300FC553C /* Camera.swift */,
 				1260AB331E2C97BA00FC553C /* IO.swift */,
 				1260AB421E2DFE9300FC553C /* Line.swift */,
+				120C27781E3DB280000D3839 /* Shape.swift */,
 				1260AB351E2C97BA00FC553C /* Pixel.swift */,
 				1260AB341E2C97BA00FC553C /* PNMImage.swift */,
 				1260AB401E2CA21000FC553C /* Wall.swift */,
@@ -188,6 +191,7 @@
 				1260AB411E2CA21000FC553C /* Wall.swift in Sources */,
 				1260AB301E2C97A100FC553C /* Collection+SafeSubscript.swift in Sources */,
 				1260AB321E2C97A100FC553C /* String+Subscripting.swift in Sources */,
+				120C27791E3DB280000D3839 /* Shape.swift in Sources */,
 				1260AB2F1E2C97A100FC553C /* Array+groups.swift in Sources */,
 				1260AB3D1E2C99D300FC553C /* Camera.swift in Sources */,
 				1260AB3B1E2C97EC00FC553C /* SwiftyJSON.swift in Sources */,
@@ -325,6 +329,7 @@
 				1260AB271E2C964300FC553C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
