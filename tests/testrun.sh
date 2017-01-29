@@ -1,11 +1,16 @@
 #!/bin/bash
 
-cd $HOME/dev/training/gfx/gfx-fnd-impl/tests
+cd $HOME/dev/training/gfx/gfx-fnd-tests
+
+solutionHome="$HOME/dev/training/gfx/gfx-fnd-impl"
+solutionBin=$solutionHome/bin
+
 
 if [ "$1" = "00" ]; then
 
-../bin/gfx-fnd-00 4 3x3.bw.pnm ~/Desktop/out.3x3.bw.pnm
-../bin/gfx-fnd-00 4 F.gray.pnm ~/Desktop/out.F.gray.pnm
+solution=$solutionBin/gfx-fnd-00
+eval $solution 4 3x3.bw.pnm ~/Desktop/out.3x3.bw.pnm
+eval $solution 4 F.gray.pnm ~/Desktop/out.F.gray.pnm
 
 exit
 fi
@@ -13,36 +18,46 @@ fi
 
 if [ "$1" = "01" ]; then
 
-../bin/gfx-fnd-01
-../bin/gfx-fnd-01 8x7 1,2 3,4
-../bin/gfx-fnd-01 10x20 0,0 9,19
+solution=$solutionBin/gfx-fnd-01
+eval $solution
+eval $solution 1 8x7 1,2 3,4
+eval $solution 10x20 0,0 9,19
 
 exit
 fi
 
 if [ "$1" = "02" ]; then
 
-../bin/gfx-fnd-02
-../bin/gfx-fnd-02 testwalls.json
+solution=$solutionBin/gfx-fnd-02
+eval $solution
+eval $solution testwalls.json
 
 exit
 fi
 
 if [ "$1" = "03" ]; then
 
-../bin/gfx-fnd-03
-../bin/gfx-fnd-03 ~/Desktop/gfx/7walls.json ~/Desktop/gfx/7walls.pnm
+solution=$solutionBin/gfx-fnd-03
+eval $solution
+eval $solution ~/Desktop/gfx/7walls.json ~/Desktop/gfx/7walls.pnm
 pnmtopng ~/Desktop/gfx/7walls.pnm > ~/Desktop/gfx/7walls.png
-
 
 exit
 fi
 
-cd ../../gfx-fnd-tests
+if [ "$1" = "10" ]; then
+
+solution=$solutionBin/gfx-fnd-10
+./run_tests $solution 10 
+
+exit
+fi
+
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-01 01
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-02 02
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-03 03
+./run_tests ../gfx-fnd-impl/bin/gfx-fnd-10 10
 
 exit 
 
