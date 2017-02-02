@@ -272,8 +272,13 @@ extension PNMImage
     })
   }
 
-  public func draw(triangles:[Shape]) -> PNMImage
+  public func draw(triangles:[Shape], inPerspective:Bool = false) -> PNMImage
   {
+    let triangles = !inPerspective ? triangles :
+      triangles.map({ triangle in
+        Shape(points: triangle.vertices.map({ vertex in Point(vertex.x/vertex.z, vertex.y/vertex.z) }), colour: triangle.colour)
+      })
+    
     let domain = stride(from: left, through: right, by: 1)
 
     var hits:[(ScreenPoint, Shape)] = []

@@ -22,6 +22,9 @@ solution=$solutionBin/gfx-fnd-01
 eval $solution
 eval $solution 8x7 1,2 3,4
 eval $solution 10x20 0,0 9,19
+eval $solution 100x100 33,34 75,95 ~/Desktop/bordercase.pnm
+pnmtopng ~/Desktop/bordercase.pnm > ~/Desktop/bordercase.png
+
 
 exit
 fi
@@ -70,13 +73,17 @@ fi
 
 if [ "$1" = "11" ]; then
 
-#[0.5, 0.6, 0.8 ; 0.6, 0.5, 0.8 ; 0.4, 0.4, 0.4 ; 0.5, 0.6, 0.8]
-#[2.4, 1.6, 3.8 ; 0.6, 1.6, 2.9 ; 1.1, 9.4, 5.5 ; 2.4, 1.6, 3.8]
-#[1.9, 1.9, 1.9 ; 1.9, 0.9, 1.2 ; 6, 0.9, 12 ; 1.9, 1.9, 1.9]
-#[7.5, 9.5, 10.5 ; 3.3, 3.4, 3.2 ; 9.5, 7.5, 8.8 ; 7.5, 9.5, 10.5]
+solution=$solutionBin/gfx-fnd-11
+#eval $solution 
 
-solution=$solutionBin/gfx-fnd-10
-eval $solution 
+#eval $solution ../gfx-fnd-impl/tests/tri3D-1.json > ~/Desktop/gfx/tri3D-1.out.pnm
+#pnmtopng ~/Desktop/gfx/tri3D-1.out.pnm > ~/Desktop/gfx/tri3D-1.out.png
+
+eval $solution $solutionHome/tests/4tri-flat.json ~/Desktop/gfx/4tri-flat.out.pnm
+pnmtopng ~/Desktop/gfx/4tri-flat.out.pnm > ~/Desktop/gfx/4tri-flat.out.png
+
+eval $solution $solutionHome/tests/4tri.json ~/Desktop/gfx/4tri.out.pnm
+pnmtopng ~/Desktop/gfx/4tri.out.pnm > ~/Desktop/gfx/4tri.out.png
 
 exit
 fi
