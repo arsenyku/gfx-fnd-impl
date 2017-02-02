@@ -272,8 +272,13 @@ extension PNMImage
     })
   }
 
-  public func draw(triangles:[Shape]) -> PNMImage
+  public func draw(triangles:[Shape], inPerspective:Bool = false) -> PNMImage
   {
+    let triangles = !inPerspective ? triangles :
+      triangles.map({ triangle in
+      Shape(points: triangle.vertices.map({ vertex in Point(vertex.x/vertex.z, vertex.y/vertex.z) }), colour: triangle.colour)
+      })
+    
     let domain = stride(from: left, through: right, by: 1)
 
     var hits:[(ScreenPoint, Shape)] = []
@@ -302,12 +307,13 @@ extension PNMImage
         
         stride(from: hitTop, through: hitBottom, by: 1)
           .filter({ hitY in
-            let midY = Float(Int(floor(hitY))) + 0.5
+            let hitY = Int(floor(hitY))
+            let midY = Float(hitY) + 0.5
+            let midX = floor(x) + 0.5
             
             let inBetween = (midY >= minHitY) && (midY <= maxHitY)
 
-            // Delay evaluation of =~ if unnecessary
-            return inBetween || ( (midY =~ minHitY) || (midY =~ maxHitY) )
+            return inBetween || self.tiebreak(forPixelCentredAt: Point(midX,midY), andTriangle: triangle)
 
           })
           .forEach({ hitY in
@@ -331,6 +337,12 @@ extension PNMImage
     return self
   }
   
+  fileprivate func tiebreak(forPixelCentredAt pixelCentre:Point, andTriangle triangle:Shape) -> Bool
+  {
+    let  triangle.edges.reduce({ partialResult,edge in partialResult || edge.contains(Point(pixelCentre.x-0.5, pixelCentre.y-0.5)) })
+  }
+
+
 }
 
 infix operator =~: ComparisonPrecedence
