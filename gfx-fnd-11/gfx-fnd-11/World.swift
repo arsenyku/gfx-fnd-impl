@@ -20,26 +20,37 @@ class World
   static let LargestMagnitude:Float = 1e4
   
   var triangles = [Shape]()
-  var trianglesInPerspective = [Shape]()
   
   func add(triangles:[Shape])
   {
     self.triangles.append(contentsOf: triangles)
-    self.trianglesInPerspective.append(contentsOf: triangles.map({
-      Shape(points: $0.vertices.map({
-        Point($0.x/$0.z, $0.y/$0.z)
-      }), colour: $0.colour)
-    }))
   }
 
   func view(from cameraPoint:Point = Point(0,0,1e-6), withDirectionVector viewVector:Point = Point(0,0,1)) -> [PointAndColour]
   {
     return []
   }
-  
-  func view() -> [PointAndColour]
+
+  func orthographicView() -> [PointAndColour]
   {
-    let result = trianglesInPerspective.map({ triangle -> [PointAndColour] in
+    return self.view(inPerspective: false)
+  }
+  
+  func perspectiveView() -> [PointAndColour]
+  {
+    return self.view(inPerspective: true)
+  }
+  
+  fileprivate func view(inPerspective:Bool) -> [PointAndColour]
+  {
+    let viewTriangles = !inPerspective ? triangles : triangles.map({ triangle -> Shape in
+      Shape(points: triangle.vertices.map({ vertex -> Point in
+        Point(vertex.x/vertex.z, vertex.y/vertex.z)
+      }), colour: triangle.colour)
+    })
+    
+    let result = viewTriangles.map({ triangle -> [PointAndColour] in
+      
       let minX = floor(triangle.vertices.map({ $0.x }).min() ?? 0.0) + 0.5
       let maxX = floor(triangle.vertices.map({ $0.x }).max() ?? 0.0) + 0.5
       
