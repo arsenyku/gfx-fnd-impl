@@ -324,30 +324,38 @@ extension PNMImage
     })
     
     hits.forEach({ point, shape in
-      let row = point.y
-      let column = point.x
-      guard (row >= 0 && row < height),
-        (column >= 0 && column < height)
-        else { return }
-      pixels[row][column] = Pixel(colour: shape.colour)
+      self.draw(pixel: Pixel(colour: shape.colour), at: point)
     })
     
     
     return self
   }
+ 
+  func draw(pixel:Pixel, at point:ScreenPoint)
+  {
+    let row = point.y
+    let column = point.x
+    guard (row >= 0 && row < height),
+      (column >= 0 && column < height)
+      else { return }
+    pixels[row][column] = pixel
+  }
+  
+  func draw(pixelsFor pixelData:[PointAndColour], withXOffset xOffset:Float = 0.0, withYOffset yOffset:Float = 0.0) -> PNMImage
+  {
+    pixelData.map({ (originalPoint, colour) -> (ScreenPoint, Pixel) in
+      let newX = Int(floor( (originalPoint.x + xOffset) ))
+      let newY = Int(floor( (originalPoint.y + yOffset) ))
+      return (ScreenPoint(newX, newY), Pixel(colour: colour))
+    })
+      .forEach({ point, pixel in
+        self.draw(pixel: pixel, at: point)
+      })
+    
+    return self
+  }
   
 }
-
-infix operator =~: ComparisonPrecedence
-fileprivate extension Float
-{
-  static let AlmostEqualEpsilon:Float = 1e-5
-  static func =~(lhs: Float, rhs: Float) -> Bool {
-    return abs(lhs - rhs) <= AlmostEqualEpsilon
-  }
-
-}
-
 
 
 

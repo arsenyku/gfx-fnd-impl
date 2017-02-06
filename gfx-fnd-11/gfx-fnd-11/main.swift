@@ -78,18 +78,13 @@ func main()
   let jsonInput = JSON(data: read(pathAndFilename: inputFile).data(using: .ascii)!)
   let (bg, width, height, triangles) = parseInputJson(contents: jsonInput)
   
-  let xOffset = Float(width)/2.0
-  let yOffset = Float(height)/2.0
-  
-  let translatedTriangles = triangles.map({ triangle -> Shape in
-    let translatedPoints = triangle.vertices.map({ vertex in Point(vertex.x + xOffset, vertex.y + yOffset, vertex.z) })
-    
-    return Shape(points: translatedPoints, colour: triangle.colour)
-  })
+  TheWorld.add(triangles: triangles)
+ 
+  print (triangles)
   
   PNMImage(type: .RGB, width: width, height: height, maxScale: Pixel.DEFAULT_MAX_GRAYSCALE)
     .paintRect(p1: (0,0), p2: (width-1, height-1), colour: bg)
-    .draw(triangles:translatedTriangles, inPerspective:true)
+    .draw(pixelsFor:TheWorld.view(), withXOffset:Float(width)*0.5, withYOffset:Float(height)*0.5)
     .write(toFile: outputFile)
   
 }

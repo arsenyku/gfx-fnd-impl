@@ -19,6 +19,8 @@
 		120C27A31E3EB37F000D3839 /* Dictionary+Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C279F1E3EB37F000D3839 /* Dictionary+Filter.swift */; };
 		120C27A41E3EB37F000D3839 /* String+Subscripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C27A01E3EB37F000D3839 /* String+Subscripting.swift */; };
 		120C27A61E3EB398000D3839 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120C27A51E3EB398000D3839 /* SwiftyJSON.swift */; };
+		123358641E44429200FC970C /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123358631E44429200FC970C /* World.swift */; };
+		123358661E4452BC00FC970C /* Float+Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123358651E4452BC00FC970C /* Float+Comparison.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +58,8 @@
 		120C279F1E3EB37F000D3839 /* Dictionary+Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Filter.swift"; path = "../../common/Extensions/Dictionary+Filter.swift"; sourceTree = "<group>"; };
 		120C27A01E3EB37F000D3839 /* String+Subscripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Subscripting.swift"; path = "../../common/Extensions/String+Subscripting.swift"; sourceTree = "<group>"; };
 		120C27A51E3EB398000D3839 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../external/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
+		123358631E44429200FC970C /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		123358651E4452BC00FC970C /* Float+Comparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Float+Comparison.swift"; path = "../../common/Extensions/Float+Comparison.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,11 +94,12 @@
 			children = (
 				120C279C1E3EB361000D3839 /* Extensions */,
 				120C279B1E3EB359000D3839 /* External */,
-				120C27911E3EB34F000D3839 /* Shape.swift */,
-				120C27921E3EB34F000D3839 /* PNMImage.swift */,
-				120C27931E3EB34F000D3839 /* Pixel.swift */,
-				120C27941E3EB34F000D3839 /* Line.swift */,
 				120C27951E3EB34F000D3839 /* IO.swift */,
+				120C27941E3EB34F000D3839 /* Line.swift */,
+				120C27931E3EB34F000D3839 /* Pixel.swift */,
+				120C27921E3EB34F000D3839 /* PNMImage.swift */,
+				120C27911E3EB34F000D3839 /* Shape.swift */,
+				123358631E44429200FC970C /* World.swift */,
 				120C27881E3EB280000D3839 /* main.swift */,
 			);
 			path = "gfx-fnd-11";
@@ -111,6 +116,7 @@
 		120C279C1E3EB361000D3839 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				123358651E4452BC00FC970C /* Float+Comparison.swift */,
 				120C279D1E3EB37F000D3839 /* Array+groups.swift */,
 				120C279E1E3EB37F000D3839 /* Collection+SafeSubscript.swift */,
 				120C279F1E3EB37F000D3839 /* Dictionary+Filter.swift */,
@@ -181,10 +187,12 @@
 			files = (
 				120C27981E3EB34F000D3839 /* Pixel.swift in Sources */,
 				120C27891E3EB280000D3839 /* main.swift in Sources */,
+				123358661E4452BC00FC970C /* Float+Comparison.swift in Sources */,
 				120C27971E3EB34F000D3839 /* PNMImage.swift in Sources */,
 				120C27A61E3EB398000D3839 /* SwiftyJSON.swift in Sources */,
 				120C27A41E3EB37F000D3839 /* String+Subscripting.swift in Sources */,
 				120C27A11E3EB37F000D3839 /* Array+groups.swift in Sources */,
+				123358641E44429200FC970C /* World.swift in Sources */,
 				120C27961E3EB34F000D3839 /* Shape.swift in Sources */,
 				120C27991E3EB34F000D3839 /* Line.swift in Sources */,
 				120C27A21E3EB37F000D3839 /* Collection+SafeSubscript.swift in Sources */,
@@ -321,6 +329,7 @@
 				120C278E1E3EB280000D3839 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
