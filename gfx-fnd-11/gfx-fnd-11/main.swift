@@ -79,9 +79,7 @@ func main()
   let (bg, width, height, triangles) = parseInputJson(contents: jsonInput)
   
   TheWorld.add(triangles: triangles)
- 
-  print (triangles)
-  
+   
   PNMImage(type: .RGB, width: width, height: height, maxScale: Pixel.DEFAULT_MAX_GRAYSCALE)
     .paintRect(p1: (0,0), p2: (width-1, height-1), colour: bg)
     .draw(pixelsFor:TheWorld.view(), withXOffset:Float(width)*0.5, withYOffset:Float(height)*0.5)
