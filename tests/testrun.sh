@@ -79,11 +79,14 @@ solution=$solutionBin/gfx-fnd-11
 #eval $solution ../gfx-fnd-impl/tests/tri3D-1.json > ~/Desktop/gfx/tri3D-1.out.pnm
 #pnmtopng ~/Desktop/gfx/tri3D-1.out.pnm > ~/Desktop/gfx/tri3D-1.out.png
 
-eval $solution $solutionHome/tests/4tri-flat.json ~/Desktop/gfx/4tri-flat.out.pnm
-pnmtopng ~/Desktop/gfx/4tri-flat.out.pnm > ~/Desktop/gfx/4tri-flat.out.png
+#eval $solution $solutionHome/tests/4tri-flat.json ~/Desktop/gfx/4tri-flat.out.pnm
+#pnmtopng ~/Desktop/gfx/4tri-flat.out.pnm > ~/Desktop/gfx/4tri-flat.out.png
 
-eval $solution $solutionHome/tests/4tri.json ~/Desktop/gfx/4tri.out.pnm
-pnmtopng ~/Desktop/gfx/4tri.out.pnm > ~/Desktop/gfx/4tri.out.png
+#eval $solution $solutionHome/tests/4tri.json ~/Desktop/gfx/4tri.out.pnm
+#pnmtopng ~/Desktop/gfx/4tri.out.pnm > ~/Desktop/gfx/4tri.out.png
+
+eval $solution $solutionHome/tests/square.json ~/Desktop/gfx/square.pnm
+pnmtopng ~/Desktop/gfx/square.pnm > ~/Desktop/gfx/square.png
 
 exit
 fi
