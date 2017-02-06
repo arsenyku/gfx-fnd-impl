@@ -85,8 +85,11 @@ solution=$solutionBin/gfx-fnd-11
 #eval $solution $solutionHome/tests/4tri.json ~/Desktop/gfx/4tri.out.pnm
 #pnmtopng ~/Desktop/gfx/4tri.out.pnm > ~/Desktop/gfx/4tri.out.png
 
-eval $solution $solutionHome/tests/square.json ~/Desktop/gfx/square.pnm
-pnmtopng ~/Desktop/gfx/square.pnm > ~/Desktop/gfx/square.png
+#eval $solution $solutionHome/tests/square.json ~/Desktop/gfx/square.pnm
+#pnmtopng ~/Desktop/gfx/square.pnm > ~/Desktop/gfx/square.png
+
+eval $solution $solutionHome/tests/edgeClipping.json ~/Desktop/gfx/edgeClipping.pnm
+pnmtopng ~/Desktop/gfx/edgeClipping.pnm > ~/Desktop/gfx/edgeClipping.png
 
 exit
 fi
