@@ -56,36 +56,39 @@ class World
       
       let minY = floor(triangle.vertices.map({ $0.y }).min() ?? 0.0) - 1.0
       
-      var colouredPoints = [DrawingData]()
-      
-      stride(from: minX, through: maxX, by: 1.0).forEach({ pixelMidX in
-        let testLine = Line(from: Point(pixelMidX,minY), to: Point(pixelMidX,World.LargestMagnitude))
+      let drawingData = //[DrawingData]()
         
-        let intersections = triangle.edges
-          .map({ edge in testLine.intersection(with: edge, includingEndPoints: true) })
-          .flatMap({ $0 })
-        
-        let minHitY = intersections.map({ $0.y }).min() ?? World.LargestMagnitude
-        let maxHitY = intersections.map({ $0.y }).max() ?? World.LargestMagnitude
-        
-        stride(from: minHitY, through: maxHitY, by: 1)
-          .filter({ hitY in
-            let pixelMidY = Float(Int(floor(hitY))) + 0.5
+        stride(from: minX, through: maxX, by: 1.0)
+          .reduce([DrawingData](), { (drawingDataForAllTriangles, pixelMidX) -> [DrawingData] in
+            //.forEach({ pixelMidX in
+            let testLine = Line(from: Point(pixelMidX,minY), to: Point(pixelMidX,World.LargestMagnitude))
             
-            let inBetween = (pixelMidY >= minHitY) && (pixelMidY <= maxHitY)
+            let intersections = triangle.edges
+              .map({ edge in testLine.intersection(with: edge, includingEndPoints: true) })
+              .flatMap({ $0 })
             
-            // Delay evaluation of =~ until absolutely necessary
-            return inBetween || ( (pixelMidY =~ minHitY) || (pixelMidY =~ maxHitY) )
+            let minHitY = intersections.map({ $0.y }).min() ?? World.LargestMagnitude
+            let maxHitY = intersections.map({ $0.y }).max() ?? World.LargestMagnitude
             
+            let drawingDataForTriangle = stride(from: minHitY, through: maxHitY, by: 1)
+              .filter({ hitY in
+                let pixelMidY = Float(Int(floor(hitY))) + 0.5
+                
+                let inBetween = (pixelMidY >= minHitY) && (pixelMidY <= maxHitY)
+                
+                // Delay evaluation of =~ until absolutely necessary
+                return inBetween || ( (pixelMidY =~ minHitY) || (pixelMidY =~ maxHitY) )
+                
+              })
+              .reduce([DrawingData](), { (partial, hitY) -> [DrawingData] in
+                let pixelMidY = floor(hitY) + 0.5
+                return partial + [(Point(pixelMidX, pixelMidY), triangle.colour, 0)]
+              })
+            
+            return drawingDataForAllTriangles + drawingDataForTriangle
           })
-          .forEach({ hitY in
-            let pixelMidY = floor(hitY) + 0.5
-            colouredPoints.append((Point(pixelMidX, pixelMidY), triangle.colour, 0))
-          })
-        
-      })
       
-      return colouredPoints
+      return drawingData
     })
       .flatMap({ $0.map({ $0 }) })
     
