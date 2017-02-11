@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias PointAndColour = (point:Point, colour:Colour)
+typealias DrawingData = (point:Point, colour:Colour, distance:Float)
 
 let TheWorld = World.Shared
 
@@ -26,22 +26,22 @@ class World
     self.triangles.append(contentsOf: triangles)
   }
 
-  func view(from cameraPoint:Point = Point(0,0,1e-6), withDirectionVector viewVector:Point = Point(0,0,1)) -> [PointAndColour]
+  func view(from cameraPoint:Point = Point(0,0,1e-6), withDirectionVector viewVector:Point = Point(0,0,1)) -> [DrawingData]
   {
     return []
   }
 
-  func orthographicView() -> [PointAndColour]
+  func orthographicView() -> [DrawingData]
   {
     return self.view(inPerspective: false)
   }
   
-  func perspectiveView() -> [PointAndColour]
+  func perspectiveView() -> [DrawingData]
   {
     return self.view(inPerspective: true)
   }
   
-  fileprivate func view(inPerspective:Bool) -> [PointAndColour]
+  fileprivate func view(inPerspective:Bool) -> [DrawingData]
   {
     let viewTriangles = !inPerspective ? triangles : triangles.map({ triangle -> Shape in
       Shape(points: triangle.vertices.map({ vertex -> Point in
@@ -49,14 +49,14 @@ class World
       }), colour: triangle.colour)
     })
     
-    let result = viewTriangles.map({ triangle -> [PointAndColour] in
+    let result = viewTriangles.map({ triangle -> [DrawingData] in
       
       let minX = floor(triangle.vertices.map({ $0.x }).min() ?? 0.0) + 0.5
       let maxX = floor(triangle.vertices.map({ $0.x }).max() ?? 0.0) + 0.5
       
       let minY = floor(triangle.vertices.map({ $0.y }).min() ?? 0.0) - 1.0
       
-      var colouredPoints = [PointAndColour]()
+      var colouredPoints = [DrawingData]()
       
       stride(from: minX, through: maxX, by: 1.0).forEach({ pixelMidX in
         let testLine = Line(from: Point(pixelMidX,minY), to: Point(pixelMidX,World.LargestMagnitude))
@@ -80,7 +80,7 @@ class World
           })
           .forEach({ hitY in
             let pixelMidY = floor(hitY) + 0.5
-            colouredPoints.append((Point(pixelMidX, pixelMidY), triangle.colour))
+            colouredPoints.append((Point(pixelMidX, pixelMidY), triangle.colour, 0))
           })
         
       })

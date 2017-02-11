@@ -341,14 +341,14 @@ extension PNMImage
     pixels[row][column] = pixel
   }
   
-  func draw(pixelsFor pixelData:[PointAndColour], withXOffset xOffset:Float = 0.0, withYOffset yOffset:Float = 0.0) -> PNMImage
+  func draw(pixelsFor pixelData:[DrawingData], withXOffset xOffset:Float = 0.0, withYOffset yOffset:Float = 0.0) -> PNMImage
   {
-    pixelData.map({ (originalPoint, colour) -> (ScreenPoint, Pixel) in
+    pixelData.map({ (originalPoint, colour, distance) -> (ScreenPoint, Pixel, Float) in
       let newX = Int(floor( (originalPoint.x + xOffset) ))
       let newY = Int(floor( (originalPoint.y + yOffset) ))
-      return (ScreenPoint(newX, newY), Pixel(colour: colour))
+      return (ScreenPoint(newX, newY), Pixel(colour: colour), 0.0)
     })
-      .forEach({ point, pixel in
+      .forEach({ point, pixel, distance in
         self.draw(pixel: pixel, at: point)
       })
     
