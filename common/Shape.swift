@@ -28,10 +28,49 @@ class Point:CustomStringConvertible
     let dz = otherPoint.z - self.z
     return sqrt(dx*dx + dy*dy + dz*dz)
   }
+  
+  func distance(through otherPoint:Point, to triangle:Shape) -> Float
+  {
+    let uVector = Line(from:self, to:otherPoint)
+    
+    // TODO: Check if vector is coplanar or parallel with triangle
+    //
+    
+    let normalToTriangle = -triangle.edges[0] ✕ triangle.edges[1]
+
+    // Note: vertices[1] is the point in common held by edge[0] and edge[1]
+    let numerator = -(normalToTriangle ● Line(from:Point(0,0,0), to:triangle.vertices[1]))
+    
+    let denominator = normalToTriangle ● uVector
+  
+    print ("Distance from", self, "through", otherPoint, "to", triangle.vertices)
+    print ("Normal=\(normalToTriangle)")
+    print (numerator, denominator)
+    
+    return numerator/denominator
+  }
  
   var description: String
   {
     return "(\(x), \(y), \(z))"
+  }
+}
+
+extension Point
+{
+  static func +(left: Point, right: Point) -> Point
+  {
+    return Point(left.x+right.x, left.y+right.y, left.z+right.z)
+  }
+  
+  static func -(lhs: Point, rhs: Point) -> Point
+  {
+    return lhs + (-rhs)
+  }
+  
+  static prefix func -(point:Point) -> Point
+  {
+    return Point(-point.x, -point.y, -point.z)
   }
 }
 

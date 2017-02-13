@@ -49,45 +49,56 @@ class World
       }), colour: triangle.colour)
     })
     
-    let result = viewTriangles.map({ triangle -> [DrawingData] in
-      
-      let minX = floor(triangle.vertices.map({ $0.x }).min() ?? 0.0) + 0.5
-      let maxX = floor(triangle.vertices.map({ $0.x }).max() ?? 0.0) + 0.5
-      
-      let minY = floor(triangle.vertices.map({ $0.y }).min() ?? 0.0) - 1.0
-      
-      let drawingData = stride(from: minX, through: maxX, by: 1.0)
-        .reduce([DrawingData](), { (drawingDataForAllTriangles, pixelMidX) -> [DrawingData] in
-          let testLine = Line(from: Point(pixelMidX,minY), to: Point(pixelMidX,World.LargestMagnitude))
-          
-          let intersections = triangle.edges
-            .map({ edge in testLine.intersection(with: edge, includingEndPoints: true) })
-            .flatMap({ $0 })
-          
-          let minHitY = intersections.map({ $0.y }).min() ?? World.LargestMagnitude
-          let maxHitY = intersections.map({ $0.y }).max() ?? World.LargestMagnitude
-          
-          let drawingDataForTriangle = stride(from: minHitY, through: maxHitY, by: 1)
-            .filter({ hitY in
-              let pixelMidY = Float(Int(floor(hitY))) + 0.5
-              
-              let inBetween = (pixelMidY >= minHitY) && (pixelMidY <= maxHitY)
-              
-              // Delay evaluation of =~ until absolutely necessary
-              return inBetween || ( (pixelMidY =~ minHitY) || (pixelMidY =~ maxHitY) )
-              
-            })
-            .reduce([DrawingData](), { (partial, hitY) -> [DrawingData] in
-              let pixelMidY = floor(hitY) + 0.5
-              return partial + [(Point(pixelMidX, pixelMidY), triangle.colour, 0)]
-            })
-          
-          return drawingDataForAllTriangles + drawingDataForTriangle
-        })
-      
-      return drawingData
-    })
+    let result = triangles.enumerated()
+      .map({ index, originalTriangle -> [DrawingData] in
+        
+        let triangle = inPerspective ? viewTriangles[index] : originalTriangle;
+        
+        let triangleZ = originalTriangle.vertices[0].z
+        
+        let minX = floor(triangle.vertices.map({ $0.x }).min() ?? 0.0) + 0.5
+        let maxX = floor(triangle.vertices.map({ $0.x }).max() ?? 0.0) + 0.5
+        
+        let minY = floor(triangle.vertices.map({ $0.y }).min() ?? 0.0) - 1.0
+        
+        let drawingData = stride(from: minX, through: maxX, by: 1.0)
+          .reduce([DrawingData](), { (drawingDataForAllTriangles, pixelMidX) -> [DrawingData] in
+            
+            let testLine = Line(from: Point(pixelMidX,minY), to: Point(pixelMidX,World.LargestMagnitude))
+            
+            let intersections = triangle.edges
+              .map({ edge in testLine.intersection(with: edge, includingEndPoints: true) })
+              .flatMap({ $0 })
+            
+            let minHitY = intersections.map({ $0.y }).min() ?? World.LargestMagnitude
+            let maxHitY = intersections.map({ $0.y }).max() ?? World.LargestMagnitude
+            
+            let drawingDataForTriangle = stride(from: minHitY, through: maxHitY, by: 1)
+              .filter({ hitY in
+                let pixelMidY = Float(Int(floor(hitY))) + 0.5
+                
+                let inBetween = (pixelMidY >= minHitY) && (pixelMidY <= maxHitY)
+                
+                // Delay evaluation of =~ until absolutely necessary
+                return inBetween || ( (pixelMidY =~ minHitY) || (pixelMidY =~ maxHitY) )
+                
+              })
+              .reduce([DrawingData](), { (partial, hitY) -> [DrawingData] in
+                let pixelMidY = floor(hitY) + 0.5
+                let pixelMid = Point(pixelMidX, pixelMidY)
+                return partial + [(pixelMid, triangle.colour, triangleZ)]
+              })
+            
+            return drawingDataForAllTriangles + drawingDataForTriangle
+          })
+        
+        return drawingData
+      })
       .flatMap({ $0.map({ $0 }) })
+      .sorted(by: { pixel1, pixel2 in pixel1.distance > pixel2.distance })
+    
+    print ("No Sort")
+    result.forEach({ print ($0) })
     
     return result
   }

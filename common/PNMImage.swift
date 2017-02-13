@@ -346,7 +346,8 @@ extension PNMImage
     pixelData.map({ (originalPoint, colour, distance) -> (ScreenPoint, Pixel, Float) in
       let newX = Int(floor( (originalPoint.x + xOffset) ))
       let newY = Int(floor( (originalPoint.y + yOffset) ))
-      return (ScreenPoint(newX, newY), Pixel(colour: colour), 0.0)
+      
+      return (ScreenPoint(newX, newY), Pixel(colour: colour), distance)
     })
       .forEach({ point, pixel, distance in
         self.draw(pixel: pixel, at: point)
