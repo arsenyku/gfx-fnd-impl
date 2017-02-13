@@ -43,18 +43,26 @@ class World
   
   fileprivate func view(inPerspective:Bool) -> [DrawingData]
   {
-    let viewTriangles = !inPerspective ? triangles : triangles.map({ triangle -> Shape in
-      Shape(points: triangle.vertices.map({ vertex -> Point in
-        Point(vertex.x/vertex.z, vertex.y/vertex.z)
-      }), colour: triangle.colour)
-    })
+    let viewTriangles = !inPerspective
+      ? triangles.map({ triangle -> (Shape, Float) in
+        return (triangle, triangle.vertices.first?.z ?? 1.0)
+      })
+      : triangles.map({ triangle -> (Shape, Float) in
+        let projectedVertices = triangle.vertices.map({ vertex -> Point in
+          Point(vertex.x/vertex.z, vertex.y/vertex.z)
+        })
+        let distanceToOriginalTriangle = triangle.vertices.first?.z ?? 1.0
+        return (Shape(points:projectedVertices, colour:triangle.colour), distanceToOriginalTriangle)
+      })
     
-    let result = viewTriangles.map({ triangle -> [DrawingData] in
+    let result = viewTriangles.map({ triangle, triangleZ -> [DrawingData] in
       
       let minX = floor(triangle.vertices.map({ $0.x }).min() ?? 0.0) + 0.5
       let maxX = floor(triangle.vertices.map({ $0.x }).max() ?? 0.0) + 0.5
       
       let minY = floor(triangle.vertices.map({ $0.y }).min() ?? 0.0) - 1.0
+      
+      let camera = Point(0,0,0)
       
       let drawingData = stride(from: minX, through: maxX, by: 1.0)
         .reduce([DrawingData](), { (drawingDataForAllTriangles, pixelMidX) -> [DrawingData] in
@@ -79,7 +87,8 @@ class World
             })
             .reduce([DrawingData](), { (partial, hitY) -> [DrawingData] in
               let pixelMidY = floor(hitY) + 0.5
-              return partial + [(Point(pixelMidX, pixelMidY), triangle.colour, 0)]
+              let distanceToTriangle = camera.distance(to: Point(pixelMidX, pixelMidY, triangleZ))
+              return partial + [(Point(pixelMidX, pixelMidY), triangle.colour, distanceToTriangle)]
             })
           
           return drawingDataForAllTriangles + drawingDataForTriangle
@@ -88,7 +97,8 @@ class World
       return drawingData
     })
       .flatMap({ $0.map({ $0 }) })
-    
+      .sorted(by: { data1, data2 in data1.distance > data2.distance })
+
     return result
   }
 }
