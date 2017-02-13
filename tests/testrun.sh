@@ -94,17 +94,42 @@ solution=$solutionBin/gfx-fnd-11
 #eval $solution $solutionHome/tests/edgeClipping.json ~/Desktop/gfx/edgeClipping.pnm
 #pnmtopng ~/Desktop/gfx/edgeClipping.pnm > ~/Desktop/gfx/edgeClipping.png
 
-eval $solution $solutionHome/tests/smallZOrder.json ~/Desktop/gfx/smallZOrder.pnm
-pnmtopng ~/Desktop/gfx/smallZOrder.pnm > ~/Desktop/gfx/smallZOrder.png
-
-eval $solution $solutionHome/tests/basicZOrder.json ~/Desktop/gfx/basicZOrder.pnm
-pnmtopng ~/Desktop/gfx/basicZOrder.pnm > ~/Desktop/gfx/basicZOrder.png
+#eval $solution $solutionHome/tests/smallZOrder.json ~/Desktop/gfx/smallZOrder.pnm
+#pnmtopng ~/Desktop/gfx/smallZOrder.pnm > ~/Desktop/gfx/smallZOrder.png
 
 #eval $solution $solutionHome/tests/basicTri.json ~/Desktop/gfx/basicTri.pnm
 #pnmtopng ~/Desktop/gfx/basicTri.pnm > ~/Desktop/gfx/basicTri.png
 
+#echo "Basic" | perl -ne 'print "[".localtime()."] $_"'
+
+#eval $solution $solutionHome/tests/basicZOrder.json ~/Desktop/gfx/basicZOrder.pnm
+#pnmtopng ~/Desktop/gfx/basicZOrder.pnm > ~/Desktop/gfx/basicZOrder.png
+
+echo "Stack" | perl -ne 'print "[".localtime()."] $_"'
+
+eval $solution $solutionHome/tests/triangleStack.json ~/Desktop/gfx/triangleStack.pnm
+pnmtopng ~/Desktop/gfx/triangleStack.pnm > ~/Desktop/gfx/triangleStack.png
+
+echo "End" | perl -ne 'print "[".localtime()."] $_"'
+
 exit
 fi
+
+if [ "$1" = "time11" ]; then
+
+solution=$solutionBin/gfx-fnd-11
+cd $solutionHome/tests
+
+for benchfile in `ls bench*`
+do
+    echo "$benchfile" | perl -ne 'print "[".localtime()."] $_"'
+    eval $solution $benchfile ~/Desktop/gfx/$benchfile.pnm
+    echo "end" | perl -ne 'print "[".localtime()."] $_"'
+done
+
+exit 
+fi
+
 
 
 ./run_tests ../gfx-fnd-impl/bin/gfx-fnd-00 00

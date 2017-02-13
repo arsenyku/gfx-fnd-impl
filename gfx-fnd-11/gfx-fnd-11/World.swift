@@ -99,6 +99,8 @@ class World
       .flatMap({ $0.map({ $0 }) })
       .sorted(by: { data1, data2 in data1.distance > data2.distance })
 
+    print ("Painting \(result.count) pixels")
+    
     return result
   }
 }
