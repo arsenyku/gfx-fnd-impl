@@ -105,12 +105,16 @@ solution=$solutionBin/gfx-fnd-11
 #eval $solution $solutionHome/tests/basicZOrder.json ~/Desktop/gfx/basicZOrder.pnm
 #pnmtopng ~/Desktop/gfx/basicZOrder.pnm > ~/Desktop/gfx/basicZOrder.png
 
-echo "Stack" | perl -ne 'print "[".localtime()."] $_"'
+#echo "Stack" | perl -ne 'print "[".localtime()."] $_"'
+#
+#eval $solution $solutionHome/tests/triangleStack.json ~/Desktop/gfx/triangleStack.pnm
+#pnmtopng ~/Desktop/gfx/triangleStack.pnm > ~/Desktop/gfx/triangleStack.png
+#
+#echo "End" | perl -ne 'print "[".localtime()."] $_"'
 
-eval $solution $solutionHome/tests/triangleStack.json ~/Desktop/gfx/triangleStack.pnm
-pnmtopng ~/Desktop/gfx/triangleStack.pnm > ~/Desktop/gfx/triangleStack.png
+eval $solution $solutionHome/tests/heartTri.json ~/Desktop/gfx/heartTri.pnm
+pnmtopng ~/Desktop/gfx/heartTri.pnm > ~/Desktop/gfx/heartTri.png
 
-echo "End" | perl -ne 'print "[".localtime()."] $_"'
 
 exit
 fi
