@@ -98,7 +98,7 @@ class World
       return drawingData
     })
       .flatMap({ $0.map({ $0 }) })
-      .sorted(by: { data1, data2 in data1.distance < data2.distance })
+      .sorted(by: { data1, data2 in data1.distance > data2.distance })
     
     print ("Painting \(result.count) pixels")
 //    result.forEach({ print ($0.distance, $0.point, $0.colour) })
