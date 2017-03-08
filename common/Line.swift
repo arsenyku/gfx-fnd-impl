@@ -94,3 +94,59 @@ class Line: CustomStringConvertible
   }
   
 }
+
+
+infix operator ✕: MultiplicationPrecedence
+infix operator ●: MultiplicationPrecedence
+
+extension Line
+{
+  static func ✕ (left:Line, right:Line) -> Line
+  {
+    let u = left.end - left.start
+    let v = right.end - right.start
+    
+    let cross = Point(
+      u.y * v.z + u.z * v.y,
+      u.x * v.z + u.z * v.x,
+      u.x * v.y + u.y * v.x)
+    
+    return Line(from: Point(0,0,0), to: cross)
+    
+  }
+  
+  static func ● (left:Line, right:Line) -> Float
+  {
+    let u = left.end - left.start
+    let v = right.end - right.start
+    
+    return u.x * v.x + u.y * v.y + u.z * v.z
+  }
+  
+  static prefix func -(line:Line) -> Line
+  {
+    return Line(from: line.end, to: line.start)
+  }
+  
+}
+
+extension Point
+{
+  static func +(left: Point, right: Point) -> Point
+  {
+    return Point(left.x+right.x, left.y+right.y, left.z+right.z)
+  }
+  
+  static func -(lhs: Point, rhs: Point) -> Point
+  {
+    return lhs + (-rhs)
+  }
+  
+  static prefix func -(point:Point) -> Point
+  {
+    return Point(-point.x, -point.y, -point.z)
+  }
+}
+
+
+

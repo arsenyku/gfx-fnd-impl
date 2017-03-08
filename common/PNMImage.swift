@@ -349,6 +349,7 @@ extension PNMImage
       return (ScreenPoint(newX, newY), Pixel(colour: colour), 0.0)
     })
       .forEach({ point, pixel, distance in
+//        print (point, pixel.rgb)
         self.draw(pixel: pixel, at: point)
       })
     

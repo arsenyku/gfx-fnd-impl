@@ -12,6 +12,8 @@ typealias DrawingData = (point:Point, colour:Colour, distance:Float)
 
 let TheWorld = World.Shared
 
+let π = Float.pi  // alt-03c0
+
 class World
 {
   static let Shared = World()
@@ -44,18 +46,17 @@ class World
   fileprivate func view(inPerspective:Bool) -> [DrawingData]
   {
     let viewTriangles = !inPerspective
-      ? triangles.map({ triangle -> (Shape, Float) in
-        return (triangle, triangle.vertices.first?.z ?? 1.0)
+      ? triangles.map({ triangle -> (Shape, Shape) in
+        return (triangle, triangle)
       })
-      : triangles.map({ triangle -> (Shape, Float) in
+      : triangles.map({ triangle -> (Shape, Shape) in
         let projectedVertices = triangle.vertices.map({ vertex -> Point in
           Point(vertex.x/vertex.z, vertex.y/vertex.z)
         })
-        let distanceToOriginalTriangle = triangle.vertices.first?.z ?? 1.0
-        return (Shape(points:projectedVertices, colour:triangle.colour), distanceToOriginalTriangle)
+        return (Shape(points:projectedVertices, colour:triangle.colour), triangle)
       })
     
-    let result = viewTriangles.map({ triangle, triangleZ -> [DrawingData] in
+    let result = viewTriangles.map({ triangle, originalTriangle -> [DrawingData] in
       
       let minX = floor(triangle.vertices.map({ $0.x }).min() ?? 0.0) + 0.5
       let maxX = floor(triangle.vertices.map({ $0.x }).max() ?? 0.0) + 0.5
@@ -67,7 +68,7 @@ class World
       let drawingData = stride(from: minX, through: maxX, by: 1.0)
         .reduce([DrawingData](), { (drawingDataForAllTriangles, pixelMidX) -> [DrawingData] in
           let testLine = Line(from: Point(pixelMidX,minY), to: Point(pixelMidX,World.LargestMagnitude))
-          
+
           let intersections = triangle.edges
             .map({ edge in testLine.intersection(with: edge, includingEndPoints: true) })
             .flatMap({ $0 })
@@ -87,7 +88,7 @@ class World
             })
             .reduce([DrawingData](), { (partial, hitY) -> [DrawingData] in
               let pixelMidY = floor(hitY) + 0.5
-              let distanceToTriangle = camera.distance(to: Point(pixelMidX, pixelMidY, triangleZ))
+              let (distanceToTriangle, _) = camera.distance(through:Point(pixelMidX, pixelMidY, 1), to: originalTriangle)
               return partial + [(Point(pixelMidX, pixelMidY), triangle.colour, distanceToTriangle)]
             })
           
@@ -97,10 +98,10 @@ class World
       return drawingData
     })
       .flatMap({ $0.map({ $0 }) })
-      .sorted(by: { data1, data2 in data1.distance > data2.distance })
-
-    print ("Painting \(result.count) pixels")
+      .sorted(by: { data1, data2 in data1.distance < data2.distance })
     
+    print ("Painting \(result.count) pixels")
+//    result.forEach({ print ($0.distance, $0.point, $0.colour) })
     return result
   }
 }

@@ -97,6 +97,9 @@ solution=$solutionBin/gfx-fnd-11
 #eval $solution $solutionHome/tests/smallZOrder.json ~/Desktop/gfx/smallZOrder.pnm
 #pnmtopng ~/Desktop/gfx/smallZOrder.pnm > ~/Desktop/gfx/smallZOrder.png
 
+#eval $solution $solutionHome/tests/smallZOrder2.json ~/Desktop/gfx/smallZOrder2.pnm
+#pnmtopng ~/Desktop/gfx/smallZOrder2.pnm > ~/Desktop/gfx/smallZOrder2.png
+
 #eval $solution $solutionHome/tests/basicTri.json ~/Desktop/gfx/basicTri.pnm
 #pnmtopng ~/Desktop/gfx/basicTri.pnm > ~/Desktop/gfx/basicTri.png
 
@@ -105,6 +108,12 @@ solution=$solutionBin/gfx-fnd-11
 #eval $solution $solutionHome/tests/basicZOrder.json ~/Desktop/gfx/basicZOrder.pnm
 #pnmtopng ~/Desktop/gfx/basicZOrder.pnm > ~/Desktop/gfx/basicZOrder.png
 
+#eval $solution $solutionHome/tests/overlapping.json ~/Desktop/gfx/overlapping.pnm
+#pnmtopng ~/Desktop/gfx/overlapping.pnm > ~/Desktop/gfx/overlapping.png
+
+eval $solution $solutionHome/tests/overlapping0.json ~/Desktop/gfx/overlapping0.pnm
+pnmtopng ~/Desktop/gfx/overlapping0.pnm > ~/Desktop/gfx/overlapping0.png
+
 #echo "Stack" | perl -ne 'print "[".localtime()."] $_"'
 #
 #eval $solution $solutionHome/tests/triangleStack.json ~/Desktop/gfx/triangleStack.pnm
@@ -112,8 +121,8 @@ solution=$solutionBin/gfx-fnd-11
 #
 #echo "End" | perl -ne 'print "[".localtime()."] $_"'
 
-eval $solution $solutionHome/tests/heartTri.json ~/Desktop/gfx/heartTri.pnm
-pnmtopng ~/Desktop/gfx/heartTri.pnm > ~/Desktop/gfx/heartTri.png
+#eval $solution $solutionHome/tests/heartTri.json ~/Desktop/gfx/heartTri.pnm
+#pnmtopng ~/Desktop/gfx/heartTri.pnm > ~/Desktop/gfx/heartTri.png
 
 
 exit
